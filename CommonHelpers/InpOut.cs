@@ -9,7 +9,7 @@ namespace CommonHelpers
 {
     public class InpOut : IDisposable
     {
-        public const String LibraryName = "inpoutx64.dll";
+        public const string LibraryName = "inpoutx64.dll";
 
         private IntPtr libraryHandle;
         public MapPhysToLinDelegate MapPhysToLin;

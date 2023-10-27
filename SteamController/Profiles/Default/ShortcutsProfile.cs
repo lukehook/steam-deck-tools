@@ -4,7 +4,7 @@ namespace SteamController.Profiles.Default
 {
     public abstract class ShortcutsProfile : Profile
     {
-        public const String ShortcutConsumed = "ShortcutsProfile";
+        public const string ShortcutConsumed = "ShortcutsProfile";
         public readonly TimeSpan HoldForShorcuts = TimeSpan.FromMilliseconds(200);
         private readonly TimeSpan HoldToSwitchProfile = TimeSpan.FromSeconds(1);
         private readonly TimeSpan HoldToSwitchDesktop = TimeSpan.FromSeconds(2);

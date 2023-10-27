@@ -125,9 +125,9 @@ namespace CommonHelpers
             mmf.Dispose();
         }
 
-        public static String GetUniqueName()
+        public static string GetUniqueName()
         {
-            return String.Format("Global_{0}_Setting", typeof(T).Name);
+            return string.Format("Global_{0}_Setting", typeof(T).Name);
         }
 
         private static int AlignedSize()
@@ -139,7 +139,7 @@ namespace CommonHelpers
             return size;
         }
 
-        public static SharedData<T> CreateNew(String? name = null)
+        public static SharedData<T> CreateNew(string? name = null)
         {
             int size = AlignedSize();
 
@@ -149,7 +149,7 @@ namespace CommonHelpers
             };
         }
 
-        public static SharedData<T> OpenExisting(String? name = null)
+        public static SharedData<T> OpenExisting(string? name = null)
         {
             int size = AlignedSize();
 

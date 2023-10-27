@@ -63,12 +63,12 @@ namespace CommonHelpers
     public struct SteamControllerSetting
     {
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 128)]
-        public String CurrentProfile;
+        public string CurrentProfile;
 
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 2048)]
-        public String SelectableProfiles;
+        public string SelectableProfiles;
 
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 128)]
-        public String DesiredProfile;
+        public string DesiredProfile;
     }
 }

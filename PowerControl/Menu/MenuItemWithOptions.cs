@@ -20,7 +20,7 @@ namespace PowerControl.Menu
         public Action? AfterApply { get; set; }
         public Func<string?>? ResetValue { get; set; }
 
-        public event Action<MenuItemWithOptions, String?, String> ValueChanged;
+        public event Action<MenuItemWithOptions, string?, string> ValueChanged;
 
         private System.Windows.Forms.Timer delayTimer = new System.Windows.Forms.Timer();
         private ToolStripMenuItem toolStripItem = new ToolStripMenuItem();
@@ -82,7 +82,7 @@ namespace PowerControl.Menu
                 ActiveOption = Options.First();
         }
 
-        public void Set(String value, bool immediate, bool refresh)
+        public void Set(string value, bool immediate, bool refresh)
         {
             if (delayTimer != null)
                 delayTimer.Stop();
@@ -137,7 +137,7 @@ namespace PowerControl.Menu
             }
         }
 
-        public override void CreateMenu(System.Windows.Forms.ContextMenuStrip contextMenu)
+        public override void CreateMenu(ContextMenuStrip contextMenu)
         {
             toolStripItem.Text = Name;
             contextMenu.Items.Add(toolStripItem);
@@ -210,9 +210,9 @@ namespace PowerControl.Menu
             return output;
         }
 
-        private String optionText(String? option)
+        private string optionText(string? option)
         {
-            String text;
+            string text;
 
             if (option is null)
                 text = Color("?", Colors.White);

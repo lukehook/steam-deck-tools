@@ -37,9 +37,9 @@ namespace SteamController
                 if (button is null || !button.LastValue)
                     continue;
 
-                String text = button.Name;
+                string text = button.Name;
                 if (button.Consumed is not null)
-                    text += String.Format("[{0}]", button.Consumed);
+                    text += string.Format("[{0}]", button.Consumed);
                 if (button.Value)
                     text += "[P]";
 
@@ -48,17 +48,17 @@ namespace SteamController
 
             foreach (var key in Keyboard.DownKeys)
             {
-                items.Add(String.Format("Key{0}", key));
+                items.Add(string.Format("Key{0}", key));
             }
 
             foreach (var mouse in Mouse.DownButtons)
             {
-                items.Add(String.Format("Mouse{0}", mouse));
+                items.Add(string.Format("Mouse{0}", mouse));
             }
 
             if (!items.SequenceEqual(debugLastItems))
             {
-                Log.TraceDebug("DEBUG: {0}", String.Join(" ", items));
+                Log.TraceDebug("DEBUG: {0}", string.Join(" ", items));
                 debugLastItems = items;
             }
         }

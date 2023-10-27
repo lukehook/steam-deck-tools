@@ -31,7 +31,7 @@ namespace PowerControl.Helpers.AMD
                     if (res == 0 && support == 1)
                         return current == 2 ? Mode.Vivid : Mode.Normal;
 
-                    return (DCE.Mode?)null;
+                    return (Mode?)null;
                 });
             }
             set

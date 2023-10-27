@@ -4,7 +4,7 @@ namespace CommonHelpers
 {
     public class AntiCheatSettings : BaseSettings
     {
-        public const String HelpURL = "https://steam-deck-tools.ayufan.dev/#anti-cheat-and-antivirus-software";
+        public const string HelpURL = "https://steam-deck-tools.ayufan.dev/#anti-cheat-and-antivirus-software";
 
         public static readonly AntiCheatSettings Default = new AntiCheatSettings();
 
@@ -20,8 +20,8 @@ namespace CommonHelpers
 
         public AckState Acked
         {
-            get => Get<AckState>("Acked", AckState.NotYet);
-            set => Set<AckState>("Acked", value);
+            get => Get("Acked", AckState.NotYet);
+            set => Set("Acked", value);
         }
 
         public bool NotYet
@@ -36,12 +36,12 @@ namespace CommonHelpers
 
         public AntiCheatSettings() : base("AntiCheat")
         {
-            Microsoft.Win32.SystemEvents.PowerModeChanged += SystemEvents_PowerModeChanged;
+            SystemEvents.PowerModeChanged += SystemEvents_PowerModeChanged;
         }
 
         ~AntiCheatSettings()
         {
-            Microsoft.Win32.SystemEvents.PowerModeChanged -= SystemEvents_PowerModeChanged;
+            SystemEvents.PowerModeChanged -= SystemEvents_PowerModeChanged;
         }
 
         private void SystemEvents_PowerModeChanged(object sender, PowerModeChangedEventArgs e)
@@ -52,7 +52,7 @@ namespace CommonHelpers
             }
         }
 
-        public bool AckAntiCheat(String title, String? message, String? footnote = null, bool allowDismiss = true)
+        public bool AckAntiCheat(string title, string? message, string? footnote = null, bool allowDismiss = true)
         {
             if (Dismissed)
                 return true;

@@ -7,7 +7,7 @@ namespace SteamController.Devices
     public abstract class SteamAction
     {
         public SteamController? Controller { get; internal set; }
-        public String Name { get; internal set; } = "";
+        public string Name { get; internal set; } = "";
 
         /// This is action controlled by Lizard mode
         public bool LizardButton { get; internal set; }
@@ -215,7 +215,7 @@ namespace SteamController.Devices
         public override string? ToString()
         {
             if (Name != "")
-                return String.Format("{0}: {1} (last: {2})", Name, Value, LastValue);
+                return string.Format("{0}: {1} (last: {2})", Name, Value, LastValue);
             return base.ToString();
         }
     }
@@ -398,7 +398,7 @@ namespace SteamController.Devices
         public override string? ToString()
         {
             if (Name != "")
-                return String.Format("{0}: {1} (last: {2})", Name, Value, LastValue);
+                return string.Format("{0}: {1} (last: {2})", Name, Value, LastValue);
             return base.ToString();
         }
     }

@@ -21,7 +21,7 @@ namespace CommonHelpers
         private static Mutex? globalLockMutex;
         private static bool useKernelDrivers;
 
-        private const String GLOBAL_MUTEX_NAME = "Global\\SteamDeckToolsCommonHelpers";
+        private const string GLOBAL_MUTEX_NAME = "Global\\SteamDeckToolsCommonHelpers";
         private const int GLOBAL_DEFAULT_TIMEOUT = 10000;
 
         public static bool WantsRunOnStartup
@@ -121,7 +121,7 @@ namespace CommonHelpers
             }
         }
 
-        public static void Open(String title, bool useKernelDrivers, String? runOnce = null, int runOnceTimeout = 100)
+        public static void Open(string title, bool useKernelDrivers, string? runOnce = null, int runOnceTimeout = 100)
         {
             if (runOnce is not null)
             {
@@ -142,7 +142,7 @@ namespace CommonHelpers
 
                 if (Vlv0100.IsOpen && !Vlv0100.IsSupported)
                 {
-                    String message = "";
+                    string message = "";
                     message += "Current device is not supported.\n";
                     message += "FirmwareVersion: " + Vlv0100.FirmwareVersion.ToString("X") + "\n";
                     message += "BoardID: " + Vlv0100.BoardID.ToString("X") + "\n";
@@ -159,7 +159,7 @@ namespace CommonHelpers
             }
         }
 
-        public static void RunOnce(String? title, String mutexName, int runOnceTimeout = 1000)
+        public static void RunOnce(string? title, string mutexName, int runOnceTimeout = 1000)
         {
             runOnceMutex = TryCreateOrOpenExistingMutex(mutexName);
 
@@ -190,17 +190,17 @@ namespace CommonHelpers
             }
         }
 
-        public static String ApplicationName
+        public static string ApplicationName
         {
             get { return Assembly.GetEntryAssembly()?.GetName().Name ?? "unknown"; }
         }
 
-        public static String ProductVersion
+        public static string ProductVersion
         {
             get => Application.ProductVersion;
         }
 
-        public static String ProductVersionWithSha
+        public static string ProductVersionWithSha
         {
             get
             {
@@ -209,7 +209,7 @@ namespace CommonHelpers
             }
         }
 
-        public static bool HasFile(String name)
+        public static bool HasFile(string name)
         {
             var currentProcess = Process.GetCurrentProcess();
             var currentDir = Path.GetDirectoryName(currentProcess.MainModule?.FileName);
@@ -251,7 +251,7 @@ namespace CommonHelpers
             catch { }
         }
 
-        public static void Fatal(String? title, String message, bool capture = true)
+        public static void Fatal(string? title, string message, bool capture = true)
         {
             if (capture)
                 Log.TraceError("FATAL: {0}", message);

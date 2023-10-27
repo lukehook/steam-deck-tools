@@ -144,7 +144,7 @@ namespace SteamController
             }
         }
 
-        public bool SelectProfile(String name, bool userDefault = false)
+        public bool SelectProfile(string name, bool userDefault = false)
         {
             lock (this)
             {

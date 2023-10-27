@@ -8,7 +8,7 @@ namespace PowerControl.Menu
         public MenuItem? Selected;
 
         public event Action VisibleChanged;
-        public event Action<MenuItemWithOptions, String?, String> ValueChanged;
+        public event Action<MenuItemWithOptions, string?, string> ValueChanged;
 
         public MenuRoot()
         {
@@ -16,7 +16,7 @@ namespace PowerControl.Menu
             ValueChanged += delegate { };
         }
 
-        public MenuItem? this[String name]
+        public MenuItem? this[string name]
         {
             get
             {
@@ -38,7 +38,7 @@ namespace PowerControl.Menu
             }
         }
 
-        public override void CreateMenu(System.Windows.Forms.ContextMenuStrip contextMenu)
+        public override void CreateMenu(ContextMenuStrip contextMenu)
         {
             foreach (var item in Items)
                 item.CreateMenu(contextMenu);
@@ -52,7 +52,7 @@ namespace PowerControl.Menu
             }
         }
 
-        private void MenuItem_ValueChanged(MenuItemWithOptions item, String? was, String isNow)
+        private void MenuItem_ValueChanged(MenuItemWithOptions item, string? was, string isNow)
         {
             ValueChanged(item, was, isNow);
         }
@@ -137,7 +137,7 @@ namespace PowerControl.Menu
             }
         }
 
-        public MenuItem? Select(String name)
+        public MenuItem? Select(string name)
         {
             Selected = this[name];
             if (Selected is null)

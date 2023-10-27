@@ -15,7 +15,7 @@ namespace PowerControl
 
             public string FullKey(string setting)
             {
-                return String.Format("{0}_{1}", Key, setting);
+                return string.Format("{0}_{1}", Key, setting);
             }
 
             public bool Exist
@@ -44,12 +44,12 @@ namespace PowerControl
 
         public void SetOptions(IEnumerable<Option> options)
         {
-            Set<string>(OptionsKey, String.Join(",", options.Select((option) => option.Key)));
+            Set(OptionsKey, string.Join(",", options.Select((option) => option.Key)));
         }
 
         public string[] GetOptions()
         {
-            var options = Get<string>(OptionsKey, "");
+            var options = Get(OptionsKey, "");
             return options.Split(',', StringSplitOptions.RemoveEmptyEntries);
         }
     }

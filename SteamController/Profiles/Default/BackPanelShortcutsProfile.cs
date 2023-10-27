@@ -4,7 +4,7 @@ namespace SteamController.Profiles.Default
 {
     public abstract class BackPanelShortcutsProfile : GuideShortcutsProfile
     {
-        internal abstract ProfilesSettings.BackPanelSettings BackPanelSettings { get; }
+        internal abstract BackPanelSettings BackPanelSettings { get; }
 
         public override Status Run(Context c)
         {

@@ -146,11 +146,11 @@ namespace FanControl
             if (!Matches(hwSensor))
                 return false;
 
-            System.Diagnostics.Trace.WriteLine(String.Format("{0}: {1} {2}, value: {3}, type: {4}",
+            System.Diagnostics.Trace.WriteLine(string.Format("{0}: {1} {2}, value: {3}, type: {4}",
                 hwSensor.Identifier, hwSensor.Hardware.Name, hwSensor.Name, hwSensor.Value, hwSensor.SensorType));
 
             return Update(
-                String.Format("{0} {1}", hwSensor.Hardware.Name, hwSensor.Name),
+                string.Format("{0} {1}", hwSensor.Hardware.Name, hwSensor.Name),
                 hwSensor.Value, mode);
         }
 
@@ -189,7 +189,7 @@ namespace FanControl
             return true;
         }
 
-        private String Unit()
+        private string Unit()
         {
             switch (SensorType)
             {
@@ -204,12 +204,12 @@ namespace FanControl
             }
         }
 
-        public String FormattedValue()
+        public string FormattedValue()
         {
             if (!Value.HasValue)
                 return "";
 
-            String value = "";
+            string value = "";
             
             if (AllSamples.Count > 0) 
                 value += AllSamples.Last().ToString("F1") + Unit();

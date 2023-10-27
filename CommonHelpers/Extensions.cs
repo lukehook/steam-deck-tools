@@ -9,32 +9,32 @@ namespace CommonHelpers
 {
     public static class Extensions
     {
-        public static String JoinWith0(this IEnumerable<String> list)
+        public static string JoinWith0(this IEnumerable<string> list)
         {
-            return String.Join('\0', list);
+            return string.Join('\0', list);
         }
 
-        public static String JoinWith0<TSource>(this IEnumerable<TSource> list, Func<TSource, String> selector)
+        public static string JoinWith0<TSource>(this IEnumerable<TSource> list, Func<TSource, string> selector)
         {
             return list.Select(selector).JoinWith0();
         }
 
-        public static String[] SplitWith0(this String str)
+        public static string[] SplitWith0(this string str)
         {
             return str.Split('\0', StringSplitOptions.RemoveEmptyEntries);
         }
 
-        public static String JoinWithN(this IEnumerable<String> list)
+        public static string JoinWithN(this IEnumerable<string> list)
         {
-            return String.Join('\n', list);
+            return string.Join('\n', list);
         }
 
-        public static String JoinWithN<TSource>(this IEnumerable<TSource> list, Func<TSource, String> selector)
+        public static string JoinWithN<TSource>(this IEnumerable<TSource> list, Func<TSource, string> selector)
         {
             return list.Select(selector).JoinWithN();
         }
 
-        public static String[] SplitWithN(this String str)
+        public static string[] SplitWithN(this string str)
         {
             return str.Split('\n', StringSplitOptions.RemoveEmptyEntries);
         }

@@ -20,7 +20,7 @@ namespace SteamController.Managers
             });
         }
 
-        private IEnumerable<String> SelectableProfiles(Context context)
+        private IEnumerable<string> SelectableProfiles(Context context)
         {
             return context.Profiles.
                 Where((profile) => profile.Selected(context) || profile.Visible).

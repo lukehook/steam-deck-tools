@@ -23,7 +23,7 @@ namespace PowerControl.Helpers
 
             public DisplayResolution(int width, int height) { Width = width; Height = height; }
 
-            public DisplayResolution(String text)
+            public DisplayResolution(string text)
             {
                 var options = text.Split("x", 2);
                 Width = int.Parse(options[0]);
@@ -48,7 +48,7 @@ namespace PowerControl.Helpers
 
             public override string ToString()
             {
-                return String.Format("{0}x{1}", Width, Height);
+                return string.Format("{0}x{1}", Width, Height);
             }
         }
 
@@ -72,7 +72,7 @@ namespace PowerControl.Helpers
             return null;
         }
 
-        private static bool SetDisplaySettings(String type, DEVMODE? best)
+        private static bool SetDisplaySettings(string type, DEVMODE? best)
         {
             if (best == null)
                 return false;
@@ -126,7 +126,7 @@ namespace PowerControl.Helpers
             return applyChange == DISP_CHANGE.Successful;
         }
 
-        public static bool SetDisplaySettings(DisplayResolution size, int hz, String type = "DisplaySettings")
+        public static bool SetDisplaySettings(DisplayResolution size, int hz, string type = "DisplaySettings")
         {
             DEVMODE? best = FindAllDisplaySettings()
                 .Where((dm) => dm.dmPelsWidth == size.Width && dm.dmPelsHeight == size.Height)
@@ -271,8 +271,8 @@ namespace PowerControl.Helpers
 
         internal struct POINTL
         {
-            public Int32 x;
-            public Int32 y;
+            public int x;
+            public int y;
         };
 
         [StructLayout(LayoutKind.Explicit, CharSet = CharSet.Ansi)]
@@ -282,70 +282,70 @@ namespace PowerControl.Helpers
             public const int CCHFORMNAME = 32;
 
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = CCHDEVICENAME)]
-            [System.Runtime.InteropServices.FieldOffset(0)]
+            [FieldOffset(0)]
             public string dmDeviceName;
-            [System.Runtime.InteropServices.FieldOffset(32)]
-            public Int16 dmSpecVersion;
-            [System.Runtime.InteropServices.FieldOffset(34)]
-            public Int16 dmDriverVersion;
-            [System.Runtime.InteropServices.FieldOffset(36)]
-            public Int16 dmSize;
-            [System.Runtime.InteropServices.FieldOffset(38)]
-            public Int16 dmDriverExtra;
-            [System.Runtime.InteropServices.FieldOffset(40)]
+            [FieldOffset(32)]
+            public short dmSpecVersion;
+            [FieldOffset(34)]
+            public short dmDriverVersion;
+            [FieldOffset(36)]
+            public short dmSize;
+            [FieldOffset(38)]
+            public short dmDriverExtra;
+            [FieldOffset(40)]
             public DM dmFields;
 
-            [System.Runtime.InteropServices.FieldOffset(44)]
-            Int16 dmOrientation;
-            [System.Runtime.InteropServices.FieldOffset(46)]
-            Int16 dmPaperSize;
-            [System.Runtime.InteropServices.FieldOffset(48)]
-            Int16 dmPaperLength;
-            [System.Runtime.InteropServices.FieldOffset(50)]
-            Int16 dmPaperWidth;
-            [System.Runtime.InteropServices.FieldOffset(52)]
-            Int16 dmScale;
-            [System.Runtime.InteropServices.FieldOffset(54)]
-            Int16 dmCopies;
-            [System.Runtime.InteropServices.FieldOffset(56)]
-            Int16 dmDefaultSource;
-            [System.Runtime.InteropServices.FieldOffset(58)]
-            Int16 dmPrintQuality;
+            [FieldOffset(44)]
+            short dmOrientation;
+            [FieldOffset(46)]
+            short dmPaperSize;
+            [FieldOffset(48)]
+            short dmPaperLength;
+            [FieldOffset(50)]
+            short dmPaperWidth;
+            [FieldOffset(52)]
+            short dmScale;
+            [FieldOffset(54)]
+            short dmCopies;
+            [FieldOffset(56)]
+            short dmDefaultSource;
+            [FieldOffset(58)]
+            short dmPrintQuality;
 
-            [System.Runtime.InteropServices.FieldOffset(44)]
+            [FieldOffset(44)]
             public POINTL dmPosition;
-            [System.Runtime.InteropServices.FieldOffset(52)]
-            public Int32 dmDisplayOrientation;
-            [System.Runtime.InteropServices.FieldOffset(56)]
-            public Int32 dmDisplayFixedOutput;
+            [FieldOffset(52)]
+            public int dmDisplayOrientation;
+            [FieldOffset(56)]
+            public int dmDisplayFixedOutput;
 
-            [System.Runtime.InteropServices.FieldOffset(60)]
+            [FieldOffset(60)]
             public short dmColor; // See note below!
-            [System.Runtime.InteropServices.FieldOffset(62)]
+            [FieldOffset(62)]
             public short dmDuplex; // See note below!
-            [System.Runtime.InteropServices.FieldOffset(64)]
+            [FieldOffset(64)]
             public short dmYResolution;
-            [System.Runtime.InteropServices.FieldOffset(66)]
+            [FieldOffset(66)]
             public short dmTTOption;
-            [System.Runtime.InteropServices.FieldOffset(68)]
+            [FieldOffset(68)]
             public short dmCollate; // See note below!
             //[System.Runtime.InteropServices.FieldOffset(70)]
             //[MarshalAs(UnmanagedType.ByValTStr, SizeConst = CCHFORMNAME)]
             //public string dmFormName;
-            [System.Runtime.InteropServices.FieldOffset(102)]
-            public Int16 dmLogPixels;
-            [System.Runtime.InteropServices.FieldOffset(104)]
-            public Int32 dmBitsPerPel;
-            [System.Runtime.InteropServices.FieldOffset(108)]
-            public Int32 dmPelsWidth;
-            [System.Runtime.InteropServices.FieldOffset(112)]
-            public Int32 dmPelsHeight;
-            [System.Runtime.InteropServices.FieldOffset(116)]
-            public Int32 dmDisplayFlags;
-            [System.Runtime.InteropServices.FieldOffset(116)]
-            public Int32 dmNup;
-            [System.Runtime.InteropServices.FieldOffset(120)]
-            public Int32 dmDisplayFrequency;
+            [FieldOffset(102)]
+            public short dmLogPixels;
+            [FieldOffset(104)]
+            public int dmBitsPerPel;
+            [FieldOffset(108)]
+            public int dmPelsWidth;
+            [FieldOffset(112)]
+            public int dmPelsHeight;
+            [FieldOffset(116)]
+            public int dmDisplayFlags;
+            [FieldOffset(116)]
+            public int dmNup;
+            [FieldOffset(120)]
+            public int dmDisplayFrequency;
         }
 
         [Flags()]

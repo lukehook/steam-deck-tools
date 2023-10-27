@@ -20,7 +20,7 @@ namespace SteamController.Devices
         {
         }
 
-        public bool this[System.Windows.Forms.Keys key]
+        public bool this[Keys key]
         {
             get
             {

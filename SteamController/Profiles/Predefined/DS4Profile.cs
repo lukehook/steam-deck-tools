@@ -6,7 +6,7 @@ namespace SteamController.Profiles.Predefined
 {
     public class DS4Profile : Default.BackPanelShortcutsProfile
     {
-        public override System.Drawing.Icon Icon
+        public override Icon Icon
         {
             get
             {
@@ -28,9 +28,9 @@ namespace SteamController.Profiles.Predefined
             return Settings.Default.EnableDS4Support && context.Enabled && context.DS4.Valid && context.KeyboardMouseValid && !context.State.SteamUsesSteamInput;
         }
 
-        internal override ProfilesSettings.BackPanelSettings BackPanelSettings
+        internal override BackPanelSettings BackPanelSettings
         {
-            get { return ProfilesSettings.DS4BackPanelSettings.Default; }
+            get { return DS4BackPanelSettings.Default; }
         }
 
         private TimedValue<bool> btnSteamPressed;
@@ -122,7 +122,7 @@ namespace SteamController.Profiles.Predefined
         {
             base.BackPanelShortcuts(c);
 
-            var settings = ProfilesSettings.DS4BackPanelSettings.Default;
+            var settings = DS4BackPanelSettings.Default;
 
             SetVirtualDS4Code(c, settings.L4_DS4, c.Steam.BtnL4);
             SetVirtualDS4Code(c, settings.L5_DS4, c.Steam.BtnL5);

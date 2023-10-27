@@ -161,7 +161,7 @@ namespace CommonHelpers
             return GetModuleHandle(dllName) != IntPtr.Zero;
         }
 
-        private static bool TryToLoad(string dllName, String? libraryPath = null, bool unload = true)
+        private static bool TryToLoad(string dllName, string? libraryPath = null, bool unload = true)
         {
             if (IsLoaded(dllName))
                 return true;

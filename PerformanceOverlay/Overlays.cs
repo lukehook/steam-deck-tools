@@ -14,11 +14,11 @@ namespace PerformanceOverlay
     {
         public class Entry
         {
-            public String? Text { get; set; }
+            public string? Text { get; set; }
             public IList<OverlayMode> Include { get; set; } = new List<OverlayMode>();
             public IList<OverlayMode> Exclude { get; set; } = new List<OverlayMode>();
             public IList<Entry> Nested { get; set; } = new List<Entry>();
-            public String Separator { get; set; } = "";
+            public string Separator { get; set; } = "";
             public bool IgnoreMissing { get; set; }
 
             public static readonly Regex attributeRegex = new Regex("{([^}]+)}", RegexOptions.CultureInvariant | RegexOptions.IgnoreCase);
@@ -26,7 +26,7 @@ namespace PerformanceOverlay
             public Entry()
             { }
 
-            public Entry(String text)
+            public Entry(string text)
             {
                 this.Text = text;
             }
@@ -39,14 +39,14 @@ namespace PerformanceOverlay
                 }
             }
 
-            private String EvaluateText(Sensors sensors)
+            private string EvaluateText(Sensors sensors)
             {
-                String output = Text ?? "";
+                string output = Text ?? "";
 
                 foreach (var attribute in AllAttributes)
                 {
-                    String attributeName = attribute.Groups[1].Value;
-                    String? value = sensors.GetValue(attributeName);
+                    string attributeName = attribute.Groups[1].Value;
+                    string? value = sensors.GetValue(attributeName);
                     if (value is null && IgnoreMissing)
                         return "";
                     output = output.Replace(attribute.Value, value ?? "-");
@@ -55,14 +55,14 @@ namespace PerformanceOverlay
                 return output;
             }
 
-            public String? GetValue(OverlayMode mode, Sensors sensors)
+            public string? GetValue(OverlayMode mode, Sensors sensors)
             {
                 if (Exclude.Count > 0 && Exclude.Contains(mode))
                     return null;
                 if (Include.Count > 0 && !Include.Contains(mode))
                     return null;
 
-                String output = EvaluateText(sensors);
+                string output = EvaluateText(sensors);
 
                 if (Nested.Count > 0)
                 {
@@ -70,17 +70,17 @@ namespace PerformanceOverlay
                     if (outputs.Count() == 0)
                         return null;
 
-                    output += String.Join(Separator, outputs);
+                    output += string.Join(Separator, outputs);
                 }
 
-                if (output == String.Empty)
+                if (output == string.Empty)
                     return null;
 
                 return output;
             }
         }
 
-        public static readonly String[] Helpers =
+        public static readonly string[] Helpers =
         {
             "<C0=008040><C1=0080C0><C2=C08080><C3=FF0000><C4=FFFFFF><C250=FF8000>",
             "<A0=-4><A1=5><A2=-2><A3=-3><A4=-4><A5=-5><S0=-50><S1=50>",
@@ -225,7 +225,7 @@ namespace PerformanceOverlay
             }
         };
 
-        public static String GetOSD(OverlayMode mode, Sensors sensors)
+        public static string GetOSD(OverlayMode mode, Sensors sensors)
         {
             var sb = new StringBuilder();
 

@@ -4,7 +4,7 @@ namespace SteamController.Managers
 {
     public sealed class ProcessManager : Manager
     {
-        public static readonly String[] ActivationProcessNames = new String[]
+        public static readonly string[] ActivationProcessNames = new string[]
         {
             "Playnite.FullscreenApp"
         };

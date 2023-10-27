@@ -10,7 +10,7 @@ namespace CommonHelpers
 #if PRODUCTION_BUILD
         internal static String SENTRY_DSN = "https://3c93e3c3b47b40ffba72d9cb333fc6d7@o4504334913830912.ingest.sentry.io/4504334914879488";
 #else
-        internal static String SENTRY_DSN = "https://d9204614b2cd47468bfa1ea2ab55da4e@o4504334914355200.ingest.sentry.io/4504334915469312";
+        internal static string SENTRY_DSN = "https://d9204614b2cd47468bfa1ea2ab55da4e@o4504334914355200.ingest.sentry.io/4504334915469312";
 #endif
 
 #if DEBUG
@@ -22,7 +22,7 @@ namespace CommonHelpers
         public static bool LogToFile = false;
         public static bool LogToFileDebug = false;
 
-        internal static void SentryOptions(Sentry.SentryOptions o)
+        internal static void SentryOptions(SentryOptions o)
         {
             var env = Instance.IsProductionBuild ? "prod" : "dev";
             var build = Instance.IsDEBUG ? "debug" : "release";
@@ -32,7 +32,7 @@ namespace CommonHelpers
             o.Dsn = Log.SENTRY_DSN;
             o.TracesSampleRate = 1.0;
             o.IsGlobalModeEnabled = true;
-            o.Environment = String.Format("{0}:{1}_{2}", Instance.ApplicationName, build, deploy);
+            o.Environment = string.Format("{0}:{1}_{2}", Instance.ApplicationName, build, deploy);
             o.DefaultTags.Add("App", Instance.ApplicationName);
             o.DefaultTags.Add("Build", build);
             o.DefaultTags.Add("Deploy", deploy);
@@ -44,7 +44,7 @@ namespace CommonHelpers
             }
         }
 
-        private static String? LogFileFolder;
+        private static string? LogFileFolder;
 
         private static void EnsureLogFileFolder()
         {
@@ -64,7 +64,7 @@ namespace CommonHelpers
             if (LogFileFolder is null)
                 return;
 
-            var searchPattern = String.Format("{0}_*.log", Instance.ApplicationName);
+            var searchPattern = string.Format("{0}_*.log", Instance.ApplicationName);
             string[] files = Directory.GetFiles(LogFileFolder, searchPattern);
 
             foreach (string file in files)
@@ -94,32 +94,32 @@ namespace CommonHelpers
             if (LogFileFolder is null)
                 return null;
 
-            String logFile = Path.Combine(LogFileFolder, String.Format("SentryLog_{0}.json", arg.Timestamp.ToString("yyyy-MM-dd")));
+            string logFile = Path.Combine(LogFileFolder, string.Format("SentryLog_{0}.json", arg.Timestamp.ToString("yyyy-MM-dd")));
 
             using (var stream = File.Open(logFile, FileMode.OpenOrCreate | FileMode.Append))
             {
-                using (var writer = new System.Text.Json.Utf8JsonWriter(stream))
+                using (var writer = new Utf8JsonWriter(stream))
                     arg.WriteTo(writer, null);
                 stream.Write(new byte[] { (byte)'\r', (byte)'\n' });
             }
             return arg;
         }
 
-        private static void WriteToLogFile(String line)
+        private static void WriteToLogFile(string line)
         {
             EnsureLogFileFolder();
 
             if (LogFileFolder is null)
                 return;
 
-            String logFile = Path.Combine(LogFileFolder, String.Format("{0}_{1}.json",
+            string logFile = Path.Combine(LogFileFolder, string.Format("{0}_{1}.json",
                 Instance.ApplicationName, DateTime.UtcNow.ToString("yyyy-MM-dd")));
 
             for (int i = 0; i < 3; i++)
             {
                 try
                 {
-                    File.AppendAllText(logFile, String.Format("{0}: {1}: {2}\r\n",
+                    File.AppendAllText(logFile, string.Format("{0}: {1}: {2}\r\n",
                         DateTime.UtcNow, Process.GetCurrentProcess().Id, line));
                     return;
                 }
@@ -144,7 +144,7 @@ namespace CommonHelpers
             if (!LogToTrace && !LogToConsole && !LogToFile)
                 return;
 
-            String line = string.Format(format, arg);
+            string line = string.Format(format, arg);
             if (LogToTrace)
                 Trace.WriteLine(line);
             if (LogToConsole)
@@ -158,7 +158,7 @@ namespace CommonHelpers
             if (!LogToTrace && !LogToConsole && !LogToFileDebug)
                 return;
 
-            String line = string.Format(format, arg);
+            string line = string.Format(format, arg);
             if (LogToTrace)
                 Trace.WriteLine(line);
             if (LogToConsole)
@@ -169,7 +169,7 @@ namespace CommonHelpers
 
         public static void TraceError(string format, params object?[] arg)
         {
-            String line = string.Format(format, arg);
+            string line = string.Format(format, arg);
             Sentry.SentrySdk.CaptureMessage(line, Sentry.SentryLevel.Error);
             if (LogToTrace)
                 Trace.WriteLine(line);
@@ -179,7 +179,7 @@ namespace CommonHelpers
                 WriteToLogFile(line);
         }
 
-        public static void TraceException(String type, Object? name, Exception e)
+        public static void TraceException(string type, object? name, Exception e)
         {
             TraceLine("{0}: {1}: Exception: {2}", type, name, e);
             Sentry.SentrySdk.CaptureException(e, scope =>
@@ -189,7 +189,7 @@ namespace CommonHelpers
             });
         }
 
-        public static void TraceException(String type, Exception e)
+        public static void TraceException(string type, Exception e)
         {
             TraceLine("{0}: Exception: {1}", type, e);
             Sentry.SentrySdk.CaptureException(e, scope =>
@@ -198,11 +198,11 @@ namespace CommonHelpers
             });
         }
 
-        public static void DebugException(String type, Exception e)
+        public static void DebugException(string type, Exception e)
         {
         }
 
-        public static void DebugException(String type, Object? name, Exception e)
+        public static void DebugException(string type, object? name, Exception e)
         {
         }
     }

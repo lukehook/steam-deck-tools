@@ -13,9 +13,9 @@ namespace Updater
 {
     internal static class Program
     {
-        public const String Title = "Steam Deck Tools";
-        public const String RunPrefix = "-run=";
-        public const String UpdatedArg = "-updated";
+        public const string Title = "Steam Deck Tools";
+        public const string RunPrefix = "-run=";
+        public const string UpdatedArg = "-updated";
 
         /// <summary>
         ///  The main entry point for the application.
@@ -82,7 +82,7 @@ namespace Updater
             AutoUpdater.RemindLaterTimeSpan = RemindLaterFormat.Days;
             AutoUpdater.LetUserSelectRemindLater = true;
             AutoUpdater.ShowRemindLaterButton = true;
-            AutoUpdater.HttpUserAgent = String.Format("AutoUpdater/{0}/{1}/{2}",
+            AutoUpdater.HttpUserAgent = string.Format("AutoUpdater/{0}/{1}/{2}",
                 InstallationTime,
                 Instance.ProductVersionWithSha,
                 Instance.IsProductionBuild ? "prod" : "dev");
@@ -129,14 +129,14 @@ namespace Updater
             // - Used Tools: which application of suite are running, like: FanControl,PerformanceOverlay
             // - Updates 1, 3 and 7 days: amount of times update run in 1 day, 3 and 7 days
 
-            var updateURL = String.Format(
+            var updateURL = string.Format(
                 "https://steam-deck-tools.ayufan.dev/updates/{4}_{0}_{1}.xml?version={2}&installTime={3}&env={4}&apps={5}&updatesLast1={6}&updatesLast3={7}&updatesLast7={8}",
                 Instance.IsDEBUG ? "debug" : "release",
                 IsUsingInstaller ? "setup" : "zip",
                 HttpUtility.UrlEncode(Instance.ProductVersionWithSha),
                 InstallationTime,
                 Instance.IsProductionBuild ? "prod" : "dev",
-                HttpUtility.UrlEncode(String.Join(",", usedTools)),
+                HttpUtility.UrlEncode(string.Join(",", usedTools)),
                 last1,
                 last3,
                 last7
@@ -158,7 +158,7 @@ namespace Updater
             }
         }
 
-        private static bool TrackProcess(String processFilterName, List<string>? usedTools = null)
+        private static bool TrackProcess(string processFilterName, List<string>? usedTools = null)
         {
             if (FindProcesses(processFilterName).Any())
             {
@@ -195,7 +195,7 @@ namespace Updater
             });
         }
 
-        private static bool ExitProcess(String processFilerName)
+        private static bool ExitProcess(string processFilerName)
         {
             bool found = false;
 
@@ -240,7 +240,7 @@ namespace Updater
             }
         }
 
-        private static IEnumerable<Process> FindProcesses(String processFilerName)
+        private static IEnumerable<Process> FindProcesses(string processFilerName)
         {
             var currentProcess = Process.GetCurrentProcess();
             var currentDir = Path.GetDirectoryName(currentProcess.MainModule?.FileName);

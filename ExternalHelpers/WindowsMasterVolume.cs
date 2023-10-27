@@ -462,7 +462,7 @@ namespace PowerControl.Helpers
         /// <returns>An HRESULT code indicating whether the operation passed of failed.</returns>
         [PreserveSig]
         int GetChannelCount(
-            [Out][MarshalAs(UnmanagedType.U4)] out UInt32 channelCount);
+            [Out][MarshalAs(UnmanagedType.U4)] out uint channelCount);
 
         /// <summary>
         /// Sets the master volume level of the audio stream, in decibels.
@@ -513,7 +513,7 @@ namespace PowerControl.Helpers
         /// <returns>An HRESULT code indicating whether the operation passed of failed.</returns>
         [PreserveSig]
         int SetChannelVolumeLevel(
-            [In][MarshalAs(UnmanagedType.U4)] UInt32 channelNumber,
+            [In][MarshalAs(UnmanagedType.U4)] uint channelNumber,
             [In][MarshalAs(UnmanagedType.R4)] float level,
             [In][MarshalAs(UnmanagedType.LPStruct)] Guid eventContext);
 
@@ -526,7 +526,7 @@ namespace PowerControl.Helpers
         /// <returns>An HRESULT code indicating whether the operation passed of failed.</returns>
         [PreserveSig]
         int SetChannelVolumeLevelScalar(
-            [In][MarshalAs(UnmanagedType.U4)] UInt32 channelNumber,
+            [In][MarshalAs(UnmanagedType.U4)] uint channelNumber,
             [In][MarshalAs(UnmanagedType.R4)] float level,
             [In][MarshalAs(UnmanagedType.LPStruct)] Guid eventContext);
 
@@ -538,7 +538,7 @@ namespace PowerControl.Helpers
         /// <returns>An HRESULT code indicating whether the operation passed of failed.</returns>
         [PreserveSig]
         int GetChannelVolumeLevel(
-            [In][MarshalAs(UnmanagedType.U4)] UInt32 channelNumber,
+            [In][MarshalAs(UnmanagedType.U4)] uint channelNumber,
             [Out][MarshalAs(UnmanagedType.R4)] out float level);
 
         /// <summary>
@@ -549,7 +549,7 @@ namespace PowerControl.Helpers
         /// <returns>An HRESULT code indicating whether the operation passed of failed.</returns>
         [PreserveSig]
         int GetChannelVolumeLevelScalar(
-            [In][MarshalAs(UnmanagedType.U4)] UInt32 channelNumber,
+            [In][MarshalAs(UnmanagedType.U4)] uint channelNumber,
             [Out][MarshalAs(UnmanagedType.R4)] out float level);
 
         /// <summary>
@@ -560,7 +560,7 @@ namespace PowerControl.Helpers
         /// <returns>An HRESULT code indicating whether the operation passed of failed.</returns>
         [PreserveSig]
         int SetMute(
-            [In][MarshalAs(UnmanagedType.Bool)] Boolean isMuted,
+            [In][MarshalAs(UnmanagedType.Bool)] bool isMuted,
             [In][MarshalAs(UnmanagedType.LPStruct)] Guid eventContext);
 
         /// <summary>
@@ -570,7 +570,7 @@ namespace PowerControl.Helpers
         /// <returns>An HRESULT code indicating whether the operation passed of failed.</returns>
         [PreserveSig]
         int GetMute(
-            [Out][MarshalAs(UnmanagedType.Bool)] out Boolean isMuted);
+            [Out][MarshalAs(UnmanagedType.Bool)] out bool isMuted);
 
         /// <summary>
         /// Gets information about the current step in the volume range.
@@ -580,8 +580,8 @@ namespace PowerControl.Helpers
         /// <returns>An HRESULT code indicating whether the operation passed of failed.</returns>
         [PreserveSig]
         int GetVolumeStepInfo(
-            [Out][MarshalAs(UnmanagedType.U4)] out UInt32 step,
-            [Out][MarshalAs(UnmanagedType.U4)] out UInt32 stepCount);
+            [Out][MarshalAs(UnmanagedType.U4)] out uint step,
+            [Out][MarshalAs(UnmanagedType.U4)] out uint stepCount);
 
         /// <summary>
         /// Increases the volume level by one step.
@@ -608,7 +608,7 @@ namespace PowerControl.Helpers
         /// <returns>An HRESULT code indicating whether the operation passed of failed.</returns>
         [PreserveSig]
         int QueryHardwareSupport(
-            [Out][MarshalAs(UnmanagedType.U4)] out UInt32 hardwareSupportMask);
+            [Out][MarshalAs(UnmanagedType.U4)] out uint hardwareSupportMask);
 
         /// <summary>
         /// Gets the volume range of the audio stream, in decibels.

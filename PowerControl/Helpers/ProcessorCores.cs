@@ -18,12 +18,12 @@ namespace PowerControl.Helpers
 
         public static IntPtr GetProcessorMask(bool firstThreadOnly = false)
         {
-            Int64 mask = 0; 
+            long mask = 0; 
 
             foreach (var process in GetProcessorCores())
             {
                 // This works only up-to 63 CPUs
-                Int64 processorMask = (Int64)process.ProcessorMask.ToUInt64();
+                long processorMask = (long)process.ProcessorMask.ToUInt64();
 
                 if (firstThreadOnly)
                     processorMask = LSB(processorMask);
@@ -50,7 +50,7 @@ namespace PowerControl.Helpers
             try
             {
                 var p = Process.GetProcessById(processId);
-                UInt64 mask = (UInt64)p.ProcessorAffinity.ToInt64();
+                ulong mask = (ulong)p.ProcessorAffinity.ToInt64();
 
                 foreach (var processorMask in GetProcessorMasks())
                 {
@@ -74,7 +74,7 @@ namespace PowerControl.Helpers
             try
             {
                 var p = Process.GetProcessById(processId);
-                UInt64 mask = (UInt64)p.ProcessorAffinity.ToInt64();
+                ulong mask = (ulong)p.ProcessorAffinity.ToInt64();
 
                 foreach (var processorMask in GetProcessorMasks())
                 {
@@ -88,7 +88,7 @@ namespace PowerControl.Helpers
                         mask = LSB(selectedMask) | (mask & ~processorMask); // assign only first thread
                 }
 
-                p.ProcessorAffinity = new IntPtr((Int64)mask);
+                p.ProcessorAffinity = new IntPtr((long)mask);
                 return true;
             }
             catch (ArgumentException)
@@ -97,17 +97,17 @@ namespace PowerControl.Helpers
             }
         }
 
-        private static UInt64 LSB(UInt64 value)
+        private static ulong LSB(ulong value)
         {
-            return (UInt64)LSB((Int64)value);
+            return (ulong)LSB((long)value);
         }
 
-        private static Int64 LSB(Int64 value)
+        private static long LSB(long value)
         {
             return (value & -value);
         }
 
-        static IEnumerable<UInt64> GetProcessorMasks()
+        static IEnumerable<ulong> GetProcessorMasks()
         {
             return GetProcessorCores().Select((p) => p.ProcessorMask.ToUInt64());
         }
@@ -162,8 +162,8 @@ namespace PowerControl.Helpers
             [FieldOffset(0)] public byte ProcessorCore;
             [FieldOffset(0)] public uint NumaNode;
             [FieldOffset(0)] public CACHE_DESCRIPTOR Cache;
-            [FieldOffset(0)] private UInt64 Reserved1;
-            [FieldOffset(8)] private UInt64 Reserved2;
+            [FieldOffset(0)] private ulong Reserved1;
+            [FieldOffset(8)] private ulong Reserved2;
         };
 
         public enum LOGICAL_PROCESSOR_RELATIONSHIP

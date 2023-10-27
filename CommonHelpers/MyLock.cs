@@ -31,7 +31,7 @@ namespace CommonHelpers
 
         private void RaiseTimeout()
         {
-            var message = String.Format("Lock took too long for: {0}\n{1}",
+            var message = string.Format("Lock took too long for: {0}\n{1}",
                 this.context, Environment.StackTrace);
 
             Log.TraceError("RaiseTimeout: {0}", message);

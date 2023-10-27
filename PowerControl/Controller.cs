@@ -12,13 +12,13 @@ namespace PowerControl
 {
     internal class Controller : IDisposable
     {
-        public const String Title = "Power Control";
-        public static readonly String TitleWithVersion = Title + " v" + Application.ProductVersion.ToString();
+        public const string Title = "Power Control";
+        public static readonly string TitleWithVersion = Title + " v" + Application.ProductVersion.ToString();
         public const int KeyPressRepeatTime = 400;
         public const int KeyPressNextRepeatTime = 90;
 
         Container components = new Container();
-        System.Windows.Forms.NotifyIcon notifyIcon;
+        NotifyIcon notifyIcon;
         StartupManager startupManager = new StartupManager(Title);
 
         Menu.MenuRoot rootMenu = MenuStack.Root;
@@ -28,7 +28,7 @@ namespace PowerControl
 
         bool wasInternalDisplayConnected;
 
-        hidapi.HidDevice neptuneDevice = new hidapi.HidDevice(0x28de, 0x1205, 64);
+        HidDevice neptuneDevice = new HidDevice(0x28de, 0x1205, 64);
         SDCInput neptuneDeviceState = new SDCInput();
         DateTime? neptuneDeviceNextKey;
         System.Windows.Forms.Timer neptuneTimer;
@@ -60,7 +60,7 @@ namespace PowerControl
             if (Instance.WantsRunOnStartup)
                 startupManager.Startup = true;
 
-            var contextMenu = new System.Windows.Forms.ContextMenuStrip(components);
+            var contextMenu = new ContextMenuStrip(components);
 
             var notRunningRTSSItem = contextMenu.Items.Add("&RTSS is not running");
             notRunningRTSSItem.Enabled = false;
@@ -131,7 +131,7 @@ namespace PowerControl
             var exitItem = contextMenu.Items.Add("&Exit");
             exitItem.Click += ExitItem_Click;
 
-            notifyIcon = new System.Windows.Forms.NotifyIcon(components);
+            notifyIcon = new NotifyIcon(components);
             notifyIcon.Icon = WindowsDarkMode.IsDarkModeEnabled ? Resources.traffic_light_outline_light : Resources.traffic_light_outline;
             notifyIcon.Text = TitleWithVersion;
             notifyIcon.Visible = true;
@@ -272,7 +272,7 @@ namespace PowerControl
             updateOSD();
         }
 
-        private Task NeptuneDevice_OnInputReceived(hidapi.HidDeviceInputReceivedEventArgs e)
+        private Task NeptuneDevice_OnInputReceived(HidDeviceInputReceivedEventArgs e)
         {
             var input = SDCInput.FromBuffer(e.Buffer);
 

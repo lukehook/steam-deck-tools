@@ -44,7 +44,7 @@ namespace ExternalHelpers
                 throw new ArgumentNullException(nameof(aAction));
             }
 
-            System.Windows.Forms.Keys aVirtualKeyCode = (System.Windows.Forms.Keys)KeyInterop.VirtualKeyFromKey(aKey);
+            Keys aVirtualKeyCode = (Keys)KeyInterop.VirtualKeyFromKey(aKey);
             currentID = currentID + 1;
             bool aRegistered = RegisterHotKey(window.Handle, currentID,
                                         (uint)aModifier | (repeat ? MOD_NOREPEAT : 0),
@@ -110,15 +110,15 @@ namespace ExternalHelpers
         [DllImport("user32.dll")]
         private static extern bool UnregisterHotKey(IntPtr hWnd, int id);
 
-        private class InvisibleWindowForMessages : System.Windows.Forms.NativeWindow, IDisposable
+        private class InvisibleWindowForMessages : NativeWindow, IDisposable
         {
             public InvisibleWindowForMessages()
             {
-                CreateHandle(new System.Windows.Forms.CreateParams());
+                CreateHandle(new CreateParams());
             }
 
             private static int WM_HOTKEY = 0x0312;
-            protected override void WndProc(ref System.Windows.Forms.Message m)
+            protected override void WndProc(ref Message m)
             {
                 base.WndProc(ref m);
 

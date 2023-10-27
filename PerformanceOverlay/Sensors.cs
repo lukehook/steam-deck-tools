@@ -21,7 +21,7 @@ namespace PerformanceOverlay
 
         public abstract class ValueSensor : Sensor
         {
-            public String? Format { get; set; }
+            public string? Format { get; set; }
             public float Multiplier { get; set; } = 1.0f;
             public bool IgnoreZero { get; set; }
 
@@ -117,7 +117,7 @@ namespace PerformanceOverlay
 
             public IList<Sensor> Sensors { get; set; } = new List<Sensor>();
             public AggregateType Aggregate { get; set; } = AggregateType.First;
-            public String? Format { get; set; }
+            public string? Format { get; set; }
 
             private IEnumerable<string> GetValues(Sensors sensors)
             {
@@ -159,7 +159,7 @@ namespace PerformanceOverlay
             }
         }
 
-        public readonly Dictionary<String, Sensor> AllSensors = new Dictionary<string, Sensor>
+        public readonly Dictionary<string, Sensor> AllSensors = new Dictionary<string, Sensor>
         {
             {
                 "CPU_%", new HardwareSensor()
@@ -372,7 +372,7 @@ namespace PerformanceOverlay
             });
         }
 
-        public string? GetValue(String name)
+        public string? GetValue(string name)
         {
             if (!AllSensors.ContainsKey(name))
                 return null;

@@ -54,7 +54,7 @@ namespace PowerControl.Options
                 var softMin = selectedOption.Get(SoftMin, DefaultMin);
                 var softMax = selectedOption.Get(SoftMax, DefaultMax);
 
-                return CommonHelpers.Instance.WithGlobalMutex<string>(200, () =>
+                return CommonHelpers.Instance.WithGlobalMutex(200, () =>
                 {
                     using (var sd = VangoghGPU.Open())
                     {

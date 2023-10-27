@@ -36,7 +36,7 @@ namespace PowerControl.Helpers
             return devices.ToArray();
         }
 
-        public static string? GetDeviceDesc(String PNPString)
+        public static string? GetDeviceDesc(string PNPString)
         {
             if (CM_Locate_DevNode(out var devInst, PNPString, 0) != 0)
                 return null;
@@ -94,7 +94,7 @@ namespace PowerControl.Helpers
             if (propertyType != DEVPROP_TYPE_STRING)
                 return false;
 
-            result = new String(buffer, 0, length).Split('\0').First();
+            result = new string(buffer, 0, length).Split('\0').First();
             return true;
         }
 
@@ -189,7 +189,7 @@ namespace PowerControl.Helpers
             public Guid Guid;
             public uint Pid;
 
-            public DEVPROPKEY(String guid, uint pid)
+            public DEVPROPKEY(string guid, uint pid)
             {
                 this.Guid = new Guid(guid);
                 this.Pid = pid;

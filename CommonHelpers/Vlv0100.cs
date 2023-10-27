@@ -112,7 +112,7 @@
             return BitConverter.ToUInt16(data);
         }
 
-        public static void SetFanControl(Boolean userControlled)
+        public static void SetFanControl(bool userControlled)
         {
             SetGain(10);
             SetRampRate(userControlled ? (byte)10 : (byte)20);

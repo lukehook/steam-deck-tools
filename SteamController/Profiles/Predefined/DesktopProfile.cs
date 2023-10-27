@@ -1,17 +1,16 @@
-using WindowsInput;
+using SteamController.ProfilesSettings;
+using VirtualKeyCode = WindowsInput.VirtualKeyCode;
 
 namespace SteamController.Profiles.Predefined
 {
-    public sealed class DesktopProfile : Default.BackPanelShortcutsProfile
+    public class DesktopProfile : Default.BackPanelShortcutsProfile
     {
-        private const String Consumed = "DesktopProfileOwner";
-
         public DesktopProfile()
         {
             IsDesktop = true;
         }
 
-        public override System.Drawing.Icon Icon
+        public override Icon Icon
         {
             get
             {
@@ -22,9 +21,9 @@ namespace SteamController.Profiles.Predefined
             }
         }
 
-        internal override ProfilesSettings.BackPanelSettings BackPanelSettings
+        internal override BackPanelSettings BackPanelSettings
         {
-            get { return ProfilesSettings.DesktopPanelSettings.Default; }
+            get { return DesktopBackPanelSettings.Default; }
         }
 
         public override bool Selected(Context context)

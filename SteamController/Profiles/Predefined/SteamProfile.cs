@@ -6,7 +6,7 @@ namespace SteamController.Profiles.Predefined
         {
         }
 
-        public override System.Drawing.Icon Icon
+        public override Icon Icon
         {
             get
             {
@@ -17,7 +17,7 @@ namespace SteamController.Profiles.Predefined
             }
         }
 
-        public override String FullName
+        public override string FullName
         {
             get { return Name + " uses Steam Input"; }
         }

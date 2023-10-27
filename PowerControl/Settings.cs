@@ -43,13 +43,13 @@ namespace PowerControl
 
         public bool EnableNeptuneController
         {
-            get { return Get<bool>("EnableNeptuneController", true); }
+            get { return Get("EnableNeptuneController", true); }
             set { Set("EnableNeptuneController", value); }
         }
 
         public bool EnableVolumeControls
         {
-            get { return Get<bool>("EnableVolumeControls", true); }
+            get { return Get("EnableVolumeControls", true); }
             set { Set("EnableVolumeControls", value); }
         }
 

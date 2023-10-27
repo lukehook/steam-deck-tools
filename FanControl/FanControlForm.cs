@@ -157,7 +157,7 @@ namespace FanControl
 
         private void SharedData_Update()
         {
-            if (sharedData.GetValue(out var value) && Enum.IsDefined<FanMode>(value.Desired))
+            if (sharedData.GetValue(out var value) && Enum.IsDefined(value.Desired))
             {
                 setFanMode((FanMode)value.Desired);
             }
@@ -201,9 +201,9 @@ namespace FanControl
             sensorWarningLabel.Visible = fanControl.IsAnyInvalid();
 
             if (fanControl.IsActive)
-                notifyIcon.Text = String.Format("Fan: {0} RPM Mode: {1}", fanControl.CurrentRPM, fanControl.Mode);
+                notifyIcon.Text = string.Format("Fan: {0} RPM Mode: {1}", fanControl.CurrentRPM, fanControl.Mode);
             else
-                notifyIcon.Text = String.Format("Mode: {0}", fanControl.Mode);
+                notifyIcon.Text = string.Format("Mode: {0}", fanControl.Mode);
         }
 
         private void toolStripMenuItemStartupOnBoot_Click(object sender, EventArgs e)

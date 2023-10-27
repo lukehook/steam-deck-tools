@@ -13,13 +13,13 @@ namespace FanControl
 
         public FanMode FanMode
         {
-            get { return Get<FanMode>("FanMode", CommonHelpers.FanMode.Default); }
+            get { return Get("FanMode", CommonHelpers.FanMode.Default); }
             set { Set("FanMode", value); }
         }
 
         public bool AlwaysOnTop
         {
-            get { return Get<bool>("AlwaysOnTop", true); }
+            get { return Get("AlwaysOnTop", true); }
             set { Set("AlwaysOnTop", value); }
         }
 

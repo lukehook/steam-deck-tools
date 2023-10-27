@@ -6,12 +6,12 @@ namespace SteamController.Profiles.Predefined
     public class X360Profile : Default.BackPanelShortcutsProfile
     {
         public static readonly TimeSpan HoldToggleTouchPads = TimeSpan.FromMilliseconds(2000);
-        public const String TouchPadsConsumed = "TouchPads";
+        public const string TouchPadsConsumed = "TouchPads";
         public bool EmulateTouchPads { get; set; } = true;
 
         private bool TouchPadsEnabled { get; set; } = true;
 
-        public override System.Drawing.Icon Icon
+        public override Icon Icon
         {
             get
             {
@@ -27,7 +27,7 @@ namespace SteamController.Profiles.Predefined
             return context.Enabled && context.X360.Valid && context.KeyboardMouseValid && !context.State.SteamUsesSteamInput;
         }
 
-        public override String FullName
+        public override string FullName
         {
             get
             {
@@ -37,9 +37,9 @@ namespace SteamController.Profiles.Predefined
             }
         }
 
-        internal override ProfilesSettings.BackPanelSettings BackPanelSettings
+        internal override BackPanelSettings BackPanelSettings
         {
-            get { return ProfilesSettings.X360BackPanelSettings.Default; }
+            get { return X360BackPanelSettings.Default; }
         }
 
         public override Status Run(Context context)
@@ -108,7 +108,7 @@ namespace SteamController.Profiles.Predefined
         {
             base.BackPanelShortcuts(c);
 
-            var settings = ProfilesSettings.X360BackPanelSettings.Default;
+            var settings = X360BackPanelSettings.Default;
 
             c.X360[settings.L4_X360.ToViGEm()] = c.Steam.BtnL4;
             c.X360[settings.L5_X360.ToViGEm()] = c.Steam.BtnL5;

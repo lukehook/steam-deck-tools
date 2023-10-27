@@ -8,14 +8,14 @@ namespace SteamController
 {
     internal class Controller : IDisposable
     {
-        public const String Title = "Steam Controller";
-        public static readonly String TitleWithVersion = Title + " v" + Application.ProductVersion.ToString();
+        public const string Title = "Steam Controller";
+        public static readonly string TitleWithVersion = Title + " v" + Application.ProductVersion.ToString();
 
         public const int ControllerDelayAfterResumeMs = 1000;
 
-        public static readonly Dictionary<String, Profiles.Profile> PreconfiguredUserProfiles = new Dictionary<String, Profiles.Profile>()
+        public static readonly Dictionary<string, Profiles.Profile> PreconfiguredUserProfiles = new Dictionary<string, Profiles.Profile>()
         {
-            { "*.desktop.cs", new Profiles.Predefined.DesktopProfile() { Name = "Desktop" } },
+            { "*.desktop.cs", new Profiles.Predefined.DesktopHapticProfile() { Name = "Desktop" } },
             { "*.x360.cs", new Profiles.Predefined.X360HapticProfile() { Name = "X360" } }
         };
 
@@ -26,7 +26,7 @@ namespace SteamController
         Context context = new Context()
         {
             Profiles = {
-                new Profiles.Predefined.DesktopProfile() { Name = "Desktop" },
+                new Profiles.Predefined.DesktopHapticProfile() { Name = "Desktop" },
                 new Profiles.Predefined.SteamProfile() { Name = "Steam", Visible = false },
                 new Profiles.Predefined.SteamWithShorcutsProfile() { Name = "Steam with Shortcuts", Visible = false },
                 new Profiles.Predefined.X360HapticProfile() { Name = "X360", EmulateTouchPads = true },
@@ -88,7 +88,7 @@ namespace SteamController
                 {
                     notifyIcon.ShowBalloonTip(
                         3000, profile.Name,
-                        String.Join("\n", errors),
+                        string.Join("\n", errors),
                         ToolTipIcon.Error
                     );
                 };
@@ -119,7 +119,7 @@ namespace SteamController
                 contextMenu.Opening += delegate
                 {
                     profileItem.Checked = context.CurrentProfile == profile;
-                    profileItem.ToolTipText = String.Join("\n", profile.Errors ?? new string[0]);
+                    profileItem.ToolTipText = string.Join("\n", profile.Errors ?? new string[0]);
                     profileItem.Enabled = profile.Errors is null;
                     profileItem.Visible = profile.Visible;
                 };
@@ -242,7 +242,7 @@ namespace SteamController
                     notifyIcon.Icon = Resources.microsoft_xbox_controller_off;
             }
 
-            notifyIcon.Text += String.Format(". Updates: {0}/s", context.UpdatesPerSec);
+            notifyIcon.Text += string.Format(". Updates: {0}/s", context.UpdatesPerSec);
         }
 
         public void Dispose()
@@ -387,7 +387,7 @@ namespace SteamController
                 StartPosition = FormStartPosition.CenterScreen,
                 Size = new Size(400, 500),
                 AutoScaleMode = AutoScaleMode.Font,
-                AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F)
+                AutoScaleDimensions = new SizeF(6F, 13F)
             };
 
             var propertyGrid = new PropertyGrid()
@@ -397,11 +397,12 @@ namespace SteamController
                 LargeButtons = true,
                 SelectedObject = new
                 {
-                    DesktopShortcuts = ProfilesSettings.DesktopPanelSettings.Default,
+                    DesktopShortcuts = ProfilesSettings.DesktopBackPanelSettings.Default,
+                    DesktopHaptics = ProfilesSettings.DesktopHapticSettings.Default,
                     X360Shortcuts = ProfilesSettings.X360BackPanelSettings.Default,
-                    X360Haptic = ProfilesSettings.HapticSettings.X360,
+                    X360Haptic = ProfilesSettings.X360HapticSettings.Default,
                     DS4Shortcuts = ProfilesSettings.DS4BackPanelSettings.Default,
-                    DS4Haptic = ProfilesSettings.HapticSettings.DS4,
+                    DS4Haptic = ProfilesSettings.DS4HapticSettings.Default,
                     Application = Settings.Default,
 #if DEBUG
                     DEBUG = SettingsDebug.Default
@@ -424,7 +425,7 @@ namespace SteamController
                 Cursor = Cursors.Hand,
                 Dock = DockStyle.Top,
                 Font = new Font("Segoe UI", 9F, FontStyle.Bold),
-                Text = String.Join("\n",
+                Text = string.Join("\n",
                     "Consider donating if you are happy with this project."
                 ),
                 TextAlign = ContentAlignment.MiddleLeft,

@@ -42,7 +42,7 @@ namespace CommonHelpers
 
             public struct Entry
             {
-                public String ProcessName { get; set; }
+                public string ProcessName { get; set; }
                 public uint LastFrame { get; set; }
                 public DateTimeOffset LastFrameTime { get; set; }
                 public bool IsOSDForeground { get; set; }
@@ -65,7 +65,7 @@ namespace CommonHelpers
 
             public void Refresh()
             {
-                RTSSSharedMemoryNET.AppEntry[] appEntries;
+                AppEntry[] appEntries;
 
                 var oldIDs = IDs;
                 var newIDs = new Dictionary<int, Entry>();
@@ -162,7 +162,7 @@ namespace CommonHelpers
             return (uint)value;
         }
 
-        public static uint OSDIndex(String name)
+        public static uint OSDIndex(string name)
         {
             var entries = OSD.GetOSDEntries().ToList();
             for (int i = 0; i < entries.Count(); i++)

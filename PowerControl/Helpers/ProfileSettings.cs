@@ -11,7 +11,7 @@ namespace PowerControl.Helper
 {
     public class ProfileSettings : BaseSettings
     {
-        public static String UserProfilesPath
+        public static string UserProfilesPath
         {
             get
             {
@@ -24,21 +24,21 @@ namespace PowerControl.Helper
             }
         }
 
-        public String ProfileName { get; }
+        public string ProfileName { get; }
 
         public ProfileSettings(string profileName) : base("PersistentSettings")
         {
             this.ProfileName = profileName;
-            this.ConfigFile = Path.Combine(UserProfilesPath, String.Format("PowerControl.Process.{0}.ini", profileName));
+            this.ConfigFile = Path.Combine(UserProfilesPath, string.Format("PowerControl.Process.{0}.ini", profileName));
 
             this.SettingChanging += delegate { };
             this.SettingChanged += delegate { };
         }
 
-        public String? GetValue(string key)
+        public string? GetValue(string key)
         {
-            var result = base.Get(key, String.Empty);
-            if (result == String.Empty)
+            var result = base.Get(key, string.Empty);
+            if (result == string.Empty)
                 return null;
             return result;
         }

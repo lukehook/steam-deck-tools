@@ -7,14 +7,14 @@ namespace PerformanceOverlay
 {
     internal class Controller : IDisposable
     {
-        public const String Title = "Performance Overlay";
-        public static readonly String TitleWithVersion = Title + " v" + System.Windows.Forms.Application.ProductVersion.ToString();
+        public const string Title = "Performance Overlay";
+        public static readonly string TitleWithVersion = Title + " v" + System.Windows.Forms.Application.ProductVersion.ToString();
 
         Container components = new Container();
-        RTSSSharedMemoryNET.OSD? osd;
-        System.Windows.Forms.ContextMenuStrip contextMenu;
+        OSD? osd;
+        ContextMenuStrip contextMenu;
         ToolStripMenuItem showItem;
-        System.Windows.Forms.NotifyIcon notifyIcon;
+        NotifyIcon notifyIcon;
         System.Windows.Forms.Timer osdTimer;
         Sensors sensors = new Sensors();
         StartupManager startupManager = new StartupManager(
@@ -36,7 +36,7 @@ namespace PerformanceOverlay
                 startupManager.Startup = false;
             });
 
-            contextMenu = new System.Windows.Forms.ContextMenuStrip(components);
+            contextMenu = new ContextMenuStrip(components);
 
             SharedData_Update();
             Instance.Open(TitleWithVersion, Settings.Default.EnableKernelDrivers, "Global\\PerformanceOverlay");
@@ -103,7 +103,7 @@ namespace PerformanceOverlay
             var exitItem = contextMenu.Items.Add("&Exit");
             exitItem.Click += ExitItem_Click;
 
-            notifyIcon = new System.Windows.Forms.NotifyIcon(components);
+            notifyIcon = new NotifyIcon(components);
             notifyIcon.Icon = WindowsDarkMode.IsDarkModeEnabled ? Resources.poll_light : Resources.poll;
             notifyIcon.Text = TitleWithVersion;
             notifyIcon.Visible = true;
@@ -198,20 +198,20 @@ namespace PerformanceOverlay
         {
             if (sharedData.GetValue(out var value))
             {
-                if (Enum.IsDefined<OverlayMode>(value.Desired))
+                if (Enum.IsDefined(value.Desired))
                 {
                     Settings.Default.OSDMode = (OverlayMode)value.Desired;
                     Settings.Default.ShowOSD = true;
                     updateContextItems(contextMenu);
                 }
 
-                if (Enum.IsDefined<OverlayEnabled>(value.DesiredEnabled))
+                if (Enum.IsDefined(value.DesiredEnabled))
                 {
                     Settings.Default.ShowOSD = (OverlayEnabled)value.DesiredEnabled == OverlayEnabled.Yes;
                     updateContextItems(contextMenu);
                 }
 
-                if (Enum.IsDefined<KernelDriversLoaded>(value.DesiredKernelDriversLoaded))
+                if (Enum.IsDefined(value.DesiredKernelDriversLoaded))
                 {
                     setKernelDrivers((KernelDriversLoaded)value.DesiredKernelDriversLoaded == KernelDriversLoaded.Yes);
                     updateContextItems(contextMenu);
@@ -317,7 +317,7 @@ namespace PerformanceOverlay
             }
         }
 
-        private uint osdEmbedGraph(ref uint offset, ref String osdOverlay, String name, int dwWidth, int dwHeight, int dwMargin, float fltMin, float fltMax, EMBEDDED_OBJECT_GRAPH dwFlags)
+        private uint osdEmbedGraph(ref uint offset, ref string osdOverlay, string name, int dwWidth, int dwHeight, int dwMargin, float fltMin, float fltMax, EMBEDDED_OBJECT_GRAPH dwFlags)
         {
             uint size = osd.EmbedGraph(offset, new float[0], 0, dwWidth, dwHeight, dwMargin, fltMin, fltMax, dwFlags);
             if (size > 0)

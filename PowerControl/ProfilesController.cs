@@ -12,8 +12,8 @@ namespace PowerControl
         public const int ApplyProfileDelayMs = 500;
         public const int ResetProfileDelayMs = 500;
 
-        private Dictionary<int, PowerControl.Helper.ProfileSettings> watchedProcesses = new Dictionary<int, PowerControl.Helper.ProfileSettings>();
-        private Dictionary<MenuItemWithOptions, String>? changedSettings;
+        private Dictionary<int, ProfileSettings> watchedProcesses = new Dictionary<int, ProfileSettings>();
+        private Dictionary<MenuItemWithOptions, string>? changedSettings;
         private CancellationTokenSource? changeTask;
 
         private System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer()
@@ -21,7 +21,7 @@ namespace PowerControl
             Interval = 1000
         };
 
-        public IEnumerable<String> WatchedProfiles
+        public IEnumerable<string> WatchedProfiles
         {
             get
             {

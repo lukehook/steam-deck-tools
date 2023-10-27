@@ -6,7 +6,7 @@ namespace SteamController.Managers
 {
     public sealed class SteamConfigsManager : Manager
     {
-        static readonly Dictionary<String, byte[]> lockedSteamControllerFiles = new Dictionary<string, byte[]>
+        static readonly Dictionary<string, byte[]> lockedSteamControllerFiles = new Dictionary<string, byte[]>
         {
             // Use existing defaults in BasicUI and BigPicture
             // { "controller_base/basicui_neptune.vdf", Resources.basicui_neptune },
@@ -14,7 +14,7 @@ namespace SteamController.Managers
             { "controller_base/desktop_neptune.vdf", Resources.empty_neptune },
             { "controller_base/chord_neptune.vdf", Resources.chord_neptune }
         };
-        static readonly Dictionary<String, byte[]> installedSteamControllerFiles = new Dictionary<string, byte[]>
+        static readonly Dictionary<string, byte[]> installedSteamControllerFiles = new Dictionary<string, byte[]>
         {
             { "controller_base/templates/controller_neptune_steamcontroller.vdf", Resources.empty_neptune },
         };

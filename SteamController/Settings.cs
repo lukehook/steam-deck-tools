@@ -23,28 +23,28 @@ namespace SteamController
         [Description("Keep X360 controller connected always - it is strongly advised to disable this option. Might be required by some games that do not like disonnecting controller. Will disable beep notifications.")]
         public bool KeepX360AlwaysConnected
         {
-            get { return Get<bool>("KeepX360AlwaysConnected", false); }
+            get { return Get("KeepX360AlwaysConnected", false); }
             set { Set("KeepX360AlwaysConnected", value); }
         }
 
         [Description("Enable DS4 support. If disabled the DS4 will be hidden.")]
         public bool EnableDS4Support
         {
-            get { return Get<bool>("EnableDS4Support", true); }
+            get { return Get("EnableDS4Support", true); }
             set { Set("EnableDS4Support", value); }
         }
 
         [Description("If current foreground process uses overlay, treat it as a game.")]
         public bool DetectRTSSForeground
         {
-            get { return Get<bool>("DetectRTSSForeground", false); }
+            get { return Get("DetectRTSSForeground", false); }
             set { Set("DetectRTSSForeground", value); }
         }
 
         [Description("Create a debug log in Documents/SteamDeckTools/Logs.")]
         public bool EnableDebugLogging
         {
-            get { return Get<bool>("EnableDebugLogging", false); }
+            get { return Get("EnableDebugLogging", false); }
             set { Set("EnableDebugLogging", value); CommonHelpers.Log.LogToFileDebug = value; }
         }
 
@@ -53,7 +53,7 @@ namespace SteamController
         [TypeConverter(typeof(ProfilesSettings.Helpers.ProfileStringConverter))]
         public string DefaultProfile
         {
-            get { return Get<string>("DefaultProfile", "Desktop"); }
+            get { return Get("DefaultProfile", "Desktop"); }
             set { Set("DefaultProfile", value); }
         }
 
@@ -67,7 +67,7 @@ namespace SteamController
         [Browsable(true)]
         public ScrollMode ScrollDirection
         {
-            get { return Get<ScrollMode>("ScrollDirection", ScrollMode.DownScrollDown); }
+            get { return Get("ScrollDirection", ScrollMode.DownScrollDown); }
             set { Set("ScrollDirection", value); }
         }
 
@@ -83,7 +83,7 @@ namespace SteamController
             "'SteamController provided empty configuration'.")]
         public SteamControllerConfigsMode SteamControllerConfigs
         {
-            get { return Get<SteamControllerConfigsMode>("SteamControllerConfigs", SteamControllerConfigsMode.Overwrite); }
+            get { return Get("SteamControllerConfigs", SteamControllerConfigsMode.Overwrite); }
             set { Set("SteamControllerConfigs", value); }
         }
 
@@ -98,7 +98,7 @@ namespace SteamController
         [Description("Show Touch Keyboard or CTRL+WIN+O")]
         public KeyboardStyles KeyboardStyle
         {
-            get { return Get<KeyboardStyles>("KeyboardStyle", KeyboardStyles.WindowsTouch); }
+            get { return Get("KeyboardStyle", KeyboardStyles.WindowsTouch); }
             set { Set("KeyboardStyle", value); }
         }
 

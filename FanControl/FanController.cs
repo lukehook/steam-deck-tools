@@ -16,27 +16,27 @@ namespace FanControl
     [RefreshProperties(RefreshProperties.Repaint)]
     internal partial class FanController : IDisposable
     {
-        [CategoryAttribute("Fan")]
+        [Category("Fan")]
         public FanMode Mode { get; private set; } = FanMode.Default;
 
-        [CategoryAttribute("Fan")]
+        [Category("Fan")]
         public bool KernelDriversLoaded
         {
             get => Instance.UseKernelDrivers;
         }
 
-        [CategoryAttribute("Fan")]
+        [Category("Fan")]
         [NotifyParentProperty(true)]
 
         public ushort? CurrentRPM { get; private set; }
 
-        [CategoryAttribute("Fan")]
+        [Category("Fan")]
         [NotifyParentProperty(true)]
 
         public ushort DesiredRPM { get; private set; }
 
-        [CategoryAttribute("Board")]
-        public String PDVersion { get; private set; } = Vlv0100.FirmwareVersion.ToString("X");
+        [Category("Board")]
+        public string PDVersion { get; private set; } = Vlv0100.FirmwareVersion.ToString("X");
 
         public FanController()
         {

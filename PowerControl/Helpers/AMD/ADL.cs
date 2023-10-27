@@ -234,7 +234,7 @@ namespace PowerControl.Helpers.AMD
         /// <summary> ADL Memory allocation function allows ADL to callback for memory allocation</summary>
         /// <param name="size">input size</param>
         /// <returns> retrun ADL Error Code</returns>
-        internal delegate IntPtr ADL_Main_Memory_Alloc(int size);
+        internal delegate HMODULE ADL_Main_Memory_Alloc(int size);
         #endregion
 
         #region DLLImport
@@ -242,70 +242,70 @@ namespace PowerControl.Helpers.AMD
         internal static extern HMODULE GetModuleHandle(string moduleName);
 
         [DllImport(Atiadlxx_FileName)]
-        internal static extern int ADL2_Main_Control_Create(ADL_Main_Memory_Alloc callback, int enumConnectedAdapters, out IntPtr context);
+        internal static extern int ADL2_Main_Control_Create(ADL_Main_Memory_Alloc callback, int enumConnectedAdapters, out HMODULE context);
 
         [DllImport(Atiadlxx_FileName)]
-        internal static extern int ADL2_Main_Control_Destroy(IntPtr context);
+        internal static extern int ADL2_Main_Control_Destroy(HMODULE context);
 
         [DllImport(Atiadlxx_FileName)]
-        internal static extern int ADL2_Main_Control_IsFunctionValid(IntPtr context, HMODULE module, string procName);
+        internal static extern int ADL2_Main_Control_IsFunctionValid(HMODULE context, HMODULE module, string procName);
 
         [DllImport(Atiadlxx_FileName)]
-        internal static extern int ADL2_Adapter_NumberOfAdapters_Get(IntPtr context, out int numAdapters);
+        internal static extern int ADL2_Adapter_NumberOfAdapters_Get(HMODULE context, out int numAdapters);
 
         [DllImport(Atiadlxx_FileName)]
-        internal static extern int ADL2_Adapter_AdapterInfo_Get(IntPtr context, out ADLAdapterInfoArray info, int inputSize);
+        internal static extern int ADL2_Adapter_AdapterInfo_Get(HMODULE context, out ADLAdapterInfoArray info, int inputSize);
 
         [DllImport(Atiadlxx_FileName)]
-        internal static extern int ADL2_Adapter_Active_Get(IntPtr context, int adapterIndex, out int status);
+        internal static extern int ADL2_Adapter_Active_Get(HMODULE context, int adapterIndex, out int status);
 
         [DllImport(Atiadlxx_FileName)]
-        internal static extern int ADL2_Display_DisplayInfo_Get(IntPtr context, int adapterIndex, out int numDisplays, out IntPtr displayInfoArray, int forceDetect);
+        internal static extern int ADL2_Display_DisplayInfo_Get(HMODULE context, int adapterIndex, out int numDisplays, out HMODULE displayInfoArray, int forceDetect);
 
         [DllImport(Atiadlxx_FileName)]
-        internal static extern int ADL2_DFP_GPUScalingEnable_Get(IntPtr context, int adapterIndex, int displayIndex, out int support, out int current, out int default_);
+        internal static extern int ADL2_DFP_GPUScalingEnable_Get(HMODULE context, int adapterIndex, int displayIndex, out int support, out int current, out int default_);
 
         [DllImport(Atiadlxx_FileName)]
-        internal static extern int ADL2_DFP_GPUScalingEnable_Set(IntPtr context, int adapterIndex, int displayIndex, int current);
+        internal static extern int ADL2_DFP_GPUScalingEnable_Set(HMODULE context, int adapterIndex, int displayIndex, int current);
 
         [DllImport(Atiadlxx_FileName)]
-        internal static extern int ADL2_Display_PreservedAspectRatio_Get(IntPtr context, int adapterIndex, int displayIndex, out int support, out int current, out int default_);
+        internal static extern int ADL2_Display_PreservedAspectRatio_Get(HMODULE context, int adapterIndex, int displayIndex, out int support, out int current, out int default_);
 
         [DllImport(Atiadlxx_FileName)]
-        internal static extern int ADL2_Display_PreservedAspectRatio_Set(IntPtr context, int adapterIndex, int displayIndex, int current);
+        internal static extern int ADL2_Display_PreservedAspectRatio_Set(HMODULE context, int adapterIndex, int displayIndex, int current);
 
         [DllImport(Atiadlxx_FileName)]
-        internal static extern int ADL2_Display_ImageExpansion_Get(IntPtr context, int adapterIndex, int displayIndex, out int support, out int current, out int default_);
+        internal static extern int ADL2_Display_ImageExpansion_Get(HMODULE context, int adapterIndex, int displayIndex, out int support, out int current, out int default_);
 
         [DllImport(Atiadlxx_FileName)]
-        internal static extern int ADL2_Display_ImageExpansion_Set(IntPtr context, int adapterIndex, int displayIndex, int current);
+        internal static extern int ADL2_Display_ImageExpansion_Set(HMODULE context, int adapterIndex, int displayIndex, int current);
 
         [DllImport(Atiadlxx_FileName)]
-        internal static extern int ADL2_Display_SCE_State_Get(IntPtr context, int adapterIndex, int displayIndex, out int current, out int support, out int default_);
+        internal static extern int ADL2_Display_SCE_State_Get(HMODULE context, int adapterIndex, int displayIndex, out int current, out int support, out int default_);
 
         [DllImport(Atiadlxx_FileName)]
-        internal static extern int ADL2_Display_SCE_State_Set(IntPtr context, int adapterIndex, int displayIndex, int current);
+        internal static extern int ADL2_Display_SCE_State_Set(HMODULE context, int adapterIndex, int displayIndex, int current);
 
         [DllImport(Atiadlxx_FileName)]
-        internal static extern int ADL2_RIS_Settings_Get(IntPtr context, int adapterIndex, out ADL_RIS_SETTINGS settings);
+        internal static extern int ADL2_RIS_Settings_Get(HMODULE context, int adapterIndex, out ADL_RIS_SETTINGS settings);
 
         [DllImport(Atiadlxx_FileName)]
-        internal static extern int ADL2_RIS_Settings_Set(IntPtr context, int adapterIndex, ADL_RIS_SETTINGS settings, ADL_RIS_NOTFICATION_REASON reason);
+        internal static extern int ADL2_RIS_Settings_Set(HMODULE context, int adapterIndex, ADL_RIS_SETTINGS settings, ADL_RIS_NOTFICATION_REASON reason);
 
         [DllImport(Atiadlxx_FileName)]
-        internal static extern int ADL2_Display_EdidData_Get(IntPtr context, int adapterIndex, int displayIndex, ref ADLDisplayEDIDData edidData);
+        internal static extern int ADL2_Display_EdidData_Get(HMODULE context, int adapterIndex, int displayIndex, ref ADLDisplayEDIDData edidData);
 
         [DllImport(Atiadlxx_FileName)]
-        internal static extern int ADL2_Display_EdidData_Set(IntPtr context, int adapterIndex, int displayIndex, ref ADLDisplayEDIDDataX2 edidData);
+        internal static extern int ADL2_Display_EdidData_Set(HMODULE context, int adapterIndex, int displayIndex, ref ADLDisplayEDIDDataX2 edidData);
         #endregion DLLImport
 
         #region ADL_Main_Memory_Alloc
         /// <summary> Build in memory allocation function</summary>
         /// <param name="size">input size</param>
         /// <returns>return the memory buffer</returns>
-        internal static IntPtr ADL_Main_Memory_Alloc_(int size)
+        internal static HMODULE ADL_Main_Memory_Alloc_(int size)
         {
-            IntPtr result = Marshal.AllocCoTaskMem(size);
+            HMODULE result = Marshal.AllocCoTaskMem(size);
             return result;
         }
         #endregion ADL_Main_Memory_Alloc
@@ -313,9 +313,9 @@ namespace PowerControl.Helpers.AMD
         #region ADL_Main_Memory_Free
         /// <summary> Build in memory free function</summary>
         /// <param name="buffer">input buffer</param>
-        internal static void ADL_Main_Memory_Free(IntPtr buffer)
+        internal static void ADL_Main_Memory_Free(HMODULE buffer)
         {
-            if (IntPtr.Zero != buffer)
+            if (HMODULE.Zero != buffer)
             {
                 Marshal.FreeCoTaskMem(buffer);
             }

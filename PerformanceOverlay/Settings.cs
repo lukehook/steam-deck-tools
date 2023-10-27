@@ -13,37 +13,37 @@ namespace PerformanceOverlay
 
         public OverlayMode OSDMode
         {
-            get { return Get<OverlayMode>("OSDMode", OverlayMode.FPS); }
+            get { return Get("OSDMode", OverlayMode.FPS); }
             set { Set("OSDMode", value); }
         }
 
         public string ShowOSDShortcut
         {
-            get { return Get<string>("ShowOSDShortcut", "Shift+F11"); }
+            get { return Get("ShowOSDShortcut", "Shift+F11"); }
             set { Set("ShowOSDShortcut", value); }
         }
 
         public string CycleOSDShortcut
         {
-            get { return Get<string>("CycleOSDShortcut", "Alt+Shift+F11"); }
+            get { return Get("CycleOSDShortcut", "Alt+Shift+F11"); }
             set { Set("CycleOSDShortcut", value); }
         }
 
         public bool ShowOSD
         {
-            get { return Get<bool>("ShowOSD", true); }
+            get { return Get("ShowOSD", true); }
             set { Set("ShowOSD", value); }
         }
 
         public bool EnableFullOnPowerControl
         {
-            get { return Get<bool>("EnableFullOnPowerControl", false); }
+            get { return Get("EnableFullOnPowerControl", false); }
             set { Set("EnableFullOnPowerControl", value); }
         }
 
         public bool EnableKernelDrivers
         {
-            get { return Get<bool>("EnableKernelDrivers", false); }
+            get { return Get("EnableKernelDrivers", false); }
             set { Set("EnableKernelDrivers", value); }
         }
 

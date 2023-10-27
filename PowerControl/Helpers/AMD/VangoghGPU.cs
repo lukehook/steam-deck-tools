@@ -84,7 +84,7 @@ namespace PowerControl.Helpers.AMD
                     TraceError("GPU: {0}: {1}: Memory range not found: {2}",
                         deviceName,
                         devicePNP,
-                        String.Join(",", ranges.Select((item) => item.ToString()))
+                        string.Join(",", ranges.Select((item) => item.ToString()))
                     );
                     continue;
                 }
@@ -161,12 +161,12 @@ namespace PowerControl.Helpers.AMD
             return gpu;
         }
 
-        public UInt32 SMUVersion
+        public uint SMUVersion
         {
             get { return getValue(Message.PPSMC_MSG_GetSmuVersion); }
         }
 
-        public UInt32 IfVersion
+        public uint IfVersion
         {
             get { return getValue(Message.PPSMC_MSG_GetDriverIfVersion); }
         }
@@ -175,8 +175,8 @@ namespace PowerControl.Helpers.AMD
         {
             get
             {
-                UInt64 low = getValue(Message.PPSMC_MSG_GetEnabledSmuFeatures, 0);
-                UInt64 high = getValue(Message.PPSMC_MSG_GetEnabledSmuFeatures, 1);
+                ulong low = getValue(Message.PPSMC_MSG_GetEnabledSmuFeatures, 0);
+                ulong high = getValue(Message.PPSMC_MSG_GetEnabledSmuFeatures, 1);
                 return (Features)((high << 32) | low);
             }
         }
@@ -256,7 +256,7 @@ namespace PowerControl.Helpers.AMD
             }
         }
 
-        private void setCPUValue(Message msg, uint value, uint min = UInt32.MinValue, uint max = UInt32.MaxValue)
+        private void setCPUValue(Message msg, uint value, uint min = uint.MinValue, uint max = uint.MaxValue)
         {
             // TODO: Hardcode CPUs
             for (uint i = 0; i < 4; i++)
@@ -265,13 +265,13 @@ namespace PowerControl.Helpers.AMD
             }
         }
 
-        private uint getValue(Message msg, UInt32 param = 0)
+        private uint getValue(Message msg, uint param = 0)
         {
             this.smu.SendMsg(msg, param, out var value);
             return value;
         }
 
-        private void setValue(Message msg, uint value, uint min = UInt32.MinValue, uint max = UInt32.MaxValue, uint clampMask = uint.MaxValue)
+        private void setValue(Message msg, uint value, uint min = uint.MinValue, uint max = uint.MaxValue, uint clampMask = uint.MaxValue)
         {
             this.smu.SendMsg(msg, Math.Clamp(value & clampMask, min, max) | (value & ~clampMask));
         }
@@ -401,7 +401,7 @@ namespace PowerControl.Helpers.AMD
         }
 
         [Flags]
-        public enum Features : UInt64
+        public enum Features : ulong
         {
             CCLK_DPM_BIT = 0,
             FAN_CONTROLLER_BIT = 1,

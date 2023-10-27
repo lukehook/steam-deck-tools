@@ -9,7 +9,7 @@ namespace SteamController.Profiles.Dynamic
     {
         private const int ScriptTimeout = 10; // max 10ms
 
-        private String fileName;
+        private string fileName;
         private Script? compiledScript;
         private Profile? inherited;
         private DateTime? lastModifiedTime;
@@ -49,7 +49,7 @@ namespace SteamController.Profiles.Dynamic
 
             if (!File.Exists(fileName))
             {
-                this.Errors = new string[] { String.Format("File '{0}' does not exist.", fileName) };
+                this.Errors = new string[] { string.Format("File '{0}' does not exist.", fileName) };
                 return false;
             }
 
@@ -115,7 +115,7 @@ namespace SteamController.Profiles.Dynamic
             watchTimer.Start();
         }
 
-        public override System.Drawing.Icon Icon
+        public override Icon Icon
         {
             get
             {
@@ -160,9 +160,9 @@ namespace SteamController.Profiles.Dynamic
             return Status.Continue;
         }
 
-        public static IEnumerable<RoslynDynamicProfile> GetUserProfiles(Dictionary<String, Profile> preconfiguredProfiles)
+        public static IEnumerable<RoslynDynamicProfile> GetUserProfiles(Dictionary<string, Profile> preconfiguredProfiles)
         {
-            var files = new Dictionary<String, String>();
+            var files = new Dictionary<string, string>();
 
             foreach (var directory in GetUserProfilesPaths())
             {
@@ -170,7 +170,7 @@ namespace SteamController.Profiles.Dynamic
                 {
                     foreach (string file in Directory.GetFiles(directory, profile.Key))
                     {
-                        String name = Path.GetFileNameWithoutExtension(file);
+                        string name = Path.GetFileNameWithoutExtension(file);
                         name = Path.GetFileNameWithoutExtension(name);
 
                         yield return new RoslynDynamicProfile(name, file, profile.Value);
@@ -179,7 +179,7 @@ namespace SteamController.Profiles.Dynamic
             }
         }
 
-        private static IEnumerable<String> GetUserProfilesPaths()
+        private static IEnumerable<string> GetUserProfilesPaths()
         {
             var exePath = Assembly.GetExecutingAssembly().Location;
             var exeFolder = Path.GetDirectoryName(exePath);

@@ -136,7 +136,7 @@ namespace SteamController.Managers
                     if (classifier.Forbid)
                         return null;
 
-                    return String.Format("{0} (className={1}, windowText={2}, processName={3}, steamVersion={4})",
+                    return string.Format("{0} (className={1}, windowText={2}, processName={3}, steamVersion={4})",
                         classifier.Type, className, windowText, processName, steamVersion);
                 }
             }
@@ -146,13 +146,13 @@ namespace SteamController.Managers
 
         private struct Classifier
         {
-            public String Type { get; set; }
-            public String? ClassName { get; set; }
-            public String? WindowText { get; set; }
-            public String? WindowTextPrefix { get; set; }
-            public String? WindowTextSuffix { get; set; }
+            public string Type { get; set; }
+            public string? ClassName { get; set; }
+            public string? WindowText { get; set; }
+            public string? WindowTextPrefix { get; set; }
+            public string? WindowTextSuffix { get; set; }
             public Regex? WindowTextRegex { get; set; }
-            public String? ProcessName { get; set; }
+            public string? ProcessName { get; set; }
             public uint MinVersion { get; set; }
             public uint MaxVersion { get; set; }
             public bool Forbid { get; set; }

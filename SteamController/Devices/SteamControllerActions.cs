@@ -44,13 +44,13 @@ namespace SteamController.Devices
 
             var buttons = AllButtons.Where((button) => button.Value).Select((button) => button.Name);
             if (buttons.Any())
-                yield return String.Format("Buttons: {0}", String.Join(",", buttons));
+                yield return string.Format("Buttons: {0}", string.Join(",", buttons));
 
             foreach (var axis in AllAxises)
             {
                 if (!axis.Active)
                     continue;
-                yield return String.Format("Axis: {0} = {1} [Delta: {2}]", axis.Name, axis.Value, axis.Value - axis.LastValue);
+                yield return string.Format("Axis: {0} = {1} [Delta: {2}]", axis.Name, axis.Value, axis.Value - axis.LastValue);
             }
         }
     }

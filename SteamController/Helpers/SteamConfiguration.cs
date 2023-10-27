@@ -9,17 +9,17 @@ namespace SteamController.Helpers
 {
     internal static class SteamConfiguration
     {
-        public const String SteamKey = @"Software\Valve\Steam";
-        public const String RunningAppIDValue = @"RunningAppID";
-        public const String SteamExeValue = @"SteamExe";
-        public const String SteamPathValue = @"SteamPath";
-        public const String BigPictureInForegroundValue = @"BigPictureInForeground";
+        public const string SteamKey = @"Software\Valve\Steam";
+        public const string RunningAppIDValue = @"RunningAppID";
+        public const string SteamExeValue = @"SteamExe";
+        public const string SteamPathValue = @"SteamPath";
+        public const string BigPictureInForegroundValue = @"BigPictureInForeground";
 
-        public const String ActiveProcessKey = @"Software\Valve\Steam\ActiveProcess";
-        public const String PIDValue = @"pid";
+        public const string ActiveProcessKey = @"Software\Valve\Steam\ActiveProcess";
+        public const string PIDValue = @"pid";
 
-        public const String RelativeConfigPath = @"config/config.vdf";
-        public const String CrashReportConfigPath = @"bin/cef/cef.win7x64/crash_reporter.cfg";
+        public const string RelativeConfigPath = @"config/config.vdf";
+        public const string CrashReportConfigPath = @"bin/cef/cef.win7x64/crash_reporter.cfg";
 
         private static readonly Regex ControllerBlacklistRegex = new Regex("^(\\s*\"controller_blacklist\"\\s*\")([^\"]*)(\"\\s*)$");
 
@@ -64,12 +64,12 @@ namespace SteamController.Helpers
             }
         }
 
-        public static String? SteamExe
+        public static string? SteamExe
         {
             get { return GetValue2<string>(SteamKey, SteamExeValue); }
         }
 
-        public static String? SteamPath
+        public static string? SteamPath
         {
             get { return GetValue2<string>(SteamKey, SteamPathValue); }
         }
@@ -94,7 +94,7 @@ namespace SteamController.Helpers
             }
         }
 
-        public static String? GetConfigPath(String configPath)
+        public static string? GetConfigPath(string configPath)
         {
             var path = SteamPath;
             if (path is null)
@@ -150,7 +150,7 @@ namespace SteamController.Helpers
             return false;
         }
 
-        public static HashSet<String>? GetControllerBlacklist()
+        public static HashSet<string>? GetControllerBlacklist()
         {
             try
             {
@@ -169,7 +169,7 @@ namespace SteamController.Helpers
                     return value.Split(',', StringSplitOptions.RemoveEmptyEntries).ToHashSet();
                 }
 
-                return new HashSet<String>();
+                return new HashSet<string>();
             }
             catch (DirectoryNotFoundException)
             {
@@ -189,11 +189,11 @@ namespace SteamController.Helpers
             if (controllers is null)
                 return null;
 
-            var id = String.Format("{0:x}/{1:x}", vendorId, productId);
+            var id = string.Format("{0:x}/{1:x}", vendorId, productId);
             return controllers.Contains(id);
         }
 
-        public static bool BackupSteamConfig(String path)
+        public static bool BackupSteamConfig(string path)
         {
             var configPath = GetConfigPath(path);
             if (configPath is null)
@@ -202,7 +202,7 @@ namespace SteamController.Helpers
             try
             {
                 var suffix = DateTime.Now.ToString("yyyyMMddHHmmss");
-                File.Copy(configPath, String.Format("{0}.{1}.bak", configPath, suffix));
+                File.Copy(configPath, string.Format("{0}.{1}.bak", configPath, suffix));
                 return true;
             }
             catch (DirectoryNotFoundException)
@@ -234,7 +234,7 @@ namespace SteamController.Helpers
             try
             {
                 var lines = File.ReadLines(configPath).ToList();
-                var id = String.Format("{0:x}/{1:x}", vendorId, productId);
+                var id = string.Format("{0:x}/{1:x}", vendorId, productId);
 
                 for (int i = 0; i < lines.Count; i++)
                 {
@@ -243,7 +243,7 @@ namespace SteamController.Helpers
                         if (add)
                         {
                             // append controller_blacklist
-                            lines.Insert(i, String.Format("\t\"controller_blacklist\"\t\t\"{0}\"", id));
+                            lines.Insert(i, string.Format("\t\"controller_blacklist\"\t\t\"{0}\"", id));
                             break;
                         }
                     }
@@ -260,9 +260,9 @@ namespace SteamController.Helpers
                     else
                         controllers.Remove(id);
 
-                    lines[i] = String.Format("{0}{1}{2}",
+                    lines[i] = string.Format("{0}{1}{2}",
                         match.Groups[1].Captures[0].Value,
-                        String.Join(',', controllers),
+                        string.Join(',', controllers),
                         match.Groups[3].Captures[0].Value
                     );
                     break;
@@ -283,7 +283,7 @@ namespace SteamController.Helpers
             }
         }
 
-        public static bool? IsConfigFileOverwritten(String path, byte[] content)
+        public static bool? IsConfigFileOverwritten(string path, byte[] content)
         {
             try
             {
@@ -306,7 +306,7 @@ namespace SteamController.Helpers
             }
         }
 
-        public static bool? ResetConfigFile(String path)
+        public static bool? ResetConfigFile(string path)
         {
             try
             {
@@ -343,7 +343,7 @@ namespace SteamController.Helpers
             }
         }
 
-        public static bool? OverwriteConfigFile(String path, byte[] content, bool backup)
+        public static bool? OverwriteConfigFile(string path, byte[] content, bool backup)
         {
             try
             {

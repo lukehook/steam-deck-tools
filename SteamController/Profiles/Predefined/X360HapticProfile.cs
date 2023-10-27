@@ -5,9 +5,9 @@ namespace SteamController.Profiles.Predefined
 {
     public class X360HapticProfile : X360Profile
     {
-        private ProfilesSettings.HapticSettings HapticSettings
+        private X360HapticSettings HapticSettings
         {
-            get { return ProfilesSettings.HapticSettings.X360; }
+            get { return X360HapticSettings.Default; }
         }
 
         public override Status Run(Context context)
@@ -15,11 +15,11 @@ namespace SteamController.Profiles.Predefined
             if (base.Run(context).IsDone)
                 return Status.Done;
 
-            if (HapticSettings.GetHapticIntensity(context.X360.FeedbackLargeMotor, HapticSettings.LeftIntensity, out var leftIntensity))
-                context.Steam.SendHaptic(HapticPad.Right, HapticSettings.HapticStyle, leftIntensity);
+            if (X360HapticSettings.GetHapticIntensity(context.X360.FeedbackLargeMotor, HapticSettings.LeftIntensity, out var leftIntensity))
+                context.Steam.SendHaptic(HapticPad.Left, HapticSettings.HapticStyle, leftIntensity);
 
-            if (HapticSettings.GetHapticIntensity(context.X360.FeedbackSmallMotor, HapticSettings.RightIntensity, out var rightIntensity))
-                context.Steam.SendHaptic(HapticPad.Left, HapticSettings.HapticStyle, rightIntensity);
+            if (X360HapticSettings.GetHapticIntensity(context.X360.FeedbackSmallMotor, HapticSettings.RightIntensity, out var rightIntensity))
+                context.Steam.SendHaptic(HapticPad.Right, HapticSettings.HapticStyle, rightIntensity);
 
             context.X360.ResetFeedback();
 

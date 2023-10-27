@@ -11,7 +11,7 @@ namespace ExternalHelpers
 {
     public static class OnScreenKeyboard
     {
-        public const String TabTipPath = @"C:\Program Files\Common Files\Microsoft Shared\ink\TabTip.exe";
+        public const string TabTipPath = @"C:\Program Files\Common Files\Microsoft Shared\ink\TabTip.exe";
 
         public static bool Toggle()
         {

@@ -8,7 +8,7 @@ namespace CommonHelpers
     [TypeConverter(typeof(ExpandableObjectConverter))]
     public abstract class BaseSettings
     {
-        private IDictionary<String, object?> cachedValues = new ConcurrentDictionary<string, object?>();
+        private IDictionary<string, object?> cachedValues = new ConcurrentDictionary<string, object?>();
 
         public event Action<string> SettingChanging;
         public event Action<string> SettingChanged;
@@ -17,10 +17,10 @@ namespace CommonHelpers
         public bool TouchSettings { get; set; }
 
         [Browsable(false)]
-        public String SettingsKey { get; protected set; }
+        public string SettingsKey { get; protected set; }
 
         [Browsable(false)]
-        public String ConfigFile { get; protected set; }
+        public string ConfigFile { get; protected set; }
 
         protected BaseSettings(string settingsKey)
         {

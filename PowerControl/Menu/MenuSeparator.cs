@@ -9,7 +9,7 @@ namespace PowerControl.Menu
             Selectable = false;
         }
 
-        public override void CreateMenu(System.Windows.Forms.ContextMenuStrip contextMenu)
+        public override void CreateMenu(ContextMenuStrip contextMenu)
         {
             contextMenu.Items.Add(toolStripItem);
         }

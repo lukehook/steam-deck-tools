@@ -10,14 +10,14 @@ namespace Updater
         {
         }
 
-        public int GetRunTimes(string key, Int64 match)
+        public int GetRunTimes(string key, long match)
         {
-            if (Get<Int64>(key + "Match", 0) != match)
+            if (Get<long>(key + "Match", 0) != match)
                 return 0;
-            return Get<int>(key + "Counter", 0);
+            return Get(key + "Counter", 0);
         }
 
-        public void SetRunTimes(string key, Int64 match, int value)
+        public void SetRunTimes(string key, long match, int value)
         {
             Set(key + "Match", match);
             Set(key + "Counter", value);

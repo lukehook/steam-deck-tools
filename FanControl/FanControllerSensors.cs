@@ -192,29 +192,29 @@ namespace FanControl
         };
 
         #region Sensor Properties for Property Grid
-        [CategoryAttribute("Sensor - APU"), DisplayName("Name")]
-        public String? APUName { get { return allSensors["APU"].Name; } }
-        [CategoryAttribute("Sensor - APU"), DisplayName("Power")]
-        public String? APUPower { get { return allSensors["APU"].FormattedValue(); } }
+        [Category("Sensor - APU"), DisplayName("Name")]
+        public string? APUName { get { return allSensors["APU"].Name; } }
+        [Category("Sensor - APU"), DisplayName("Power")]
+        public string? APUPower { get { return allSensors["APU"].FormattedValue(); } }
 
-        [CategoryAttribute("Sensor - CPU"), DisplayName("Name")]
-        public String? CPUName { get { return allSensors["CPU"].Name; } }
-        [CategoryAttribute("Sensor - CPU"), DisplayName("Temperature")]
-        public String? CPUTemperature { get { return allSensors["CPU"].FormattedValue(); } }
+        [Category("Sensor - CPU"), DisplayName("Name")]
+        public string? CPUName { get { return allSensors["CPU"].Name; } }
+        [Category("Sensor - CPU"), DisplayName("Temperature")]
+        public string? CPUTemperature { get { return allSensors["CPU"].FormattedValue(); } }
 
-        [CategoryAttribute("Sensor - GPU"), DisplayName("Name")]
-        public String? GPUName { get { return allSensors["GPU"].Name; } }
-        [CategoryAttribute("Sensor - GPU"), DisplayName("Temperature")]
-        public String? GPUTemperature { get { return allSensors["GPU"].FormattedValue(); } }
+        [Category("Sensor - GPU"), DisplayName("Name")]
+        public string? GPUName { get { return allSensors["GPU"].Name; } }
+        [Category("Sensor - GPU"), DisplayName("Temperature")]
+        public string? GPUTemperature { get { return allSensors["GPU"].FormattedValue(); } }
 
-        [CategoryAttribute("Sensor - SSD"), DisplayName("Name")]
-        public String? SSDName { get { return allSensors["SSD"].Name; } }
-        [CategoryAttribute("Sensor - SSD"), DisplayName("Temperature")]
-        public String? SSDTemperature { get { return allSensors["SSD"].FormattedValue(); } }
-        [CategoryAttribute("Sensor - Battery"), DisplayName("Name")]
-        public String? BatteryName { get { return allSensors["Batt"].Name; } }
-        [CategoryAttribute("Sensor - Battery"), DisplayName("Temperature")]
-        public String? BatteryTemperature { get { return allSensors["Batt"].FormattedValue(); } }
+        [Category("Sensor - SSD"), DisplayName("Name")]
+        public string? SSDName { get { return allSensors["SSD"].Name; } }
+        [Category("Sensor - SSD"), DisplayName("Temperature")]
+        public string? SSDTemperature { get { return allSensors["SSD"].FormattedValue(); } }
+        [Category("Sensor - Battery"), DisplayName("Name")]
+        public string? BatteryName { get { return allSensors["Batt"].Name; } }
+        [Category("Sensor - Battery"), DisplayName("Temperature")]
+        public string? BatteryTemperature { get { return allSensors["Batt"].FormattedValue(); } }
 
         #endregion Sensor Properties for Property Grid
     }
